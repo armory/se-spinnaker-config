@@ -9,6 +9,7 @@ resources:
 #- ingress.yml ///TODO: revisit later - may just use spec.expose when it supports ingresses
 
 patchesStrategicMerge:
+- patch-componentsizing.yml # custom resource limits & requests
 - patch-persistentStore.yml # s3 bucket
 - patch-provider-docker.yml # away168 docker registry
 - patch-features.yml # UI Artifact Rewrite / Kustomize
