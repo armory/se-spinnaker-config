@@ -1,0 +1,36 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  # spec.spinnakerConfig - This section is how to specify configuration spinnaker
+  spinnakerConfig:
+    # spec.spinnakerConfig.config - This section contains the contents of a deployment found in a halconfig .deploymentConfigurations[0]
+    config:
+      providers:
+        kubernetes:
+          enabled: true
+          primaryAccount: dev-us-west-2
+          accounts:
+          - name: spinnaker
+            providerVersion: V2
+            namespaces:
+            - vincent 
+            onlySpinnakerManaged: true
+            serviceAccount: true 
+          - name: prod-us-west-2
+            providerVersion: V2
+            namespaces:
+            - prod
+            serviceAccount: true 
+            onlySpinnakerManaged: true 
+          - name: dev-us-west-2
+            providerVersion: V2
+            namespaces:
+            - dev
+            serviceAccount: true 
+            onlySpinnakerManaged: true
+    service-settings:
+      clouddriver: 
+        kubernetes:
+          serviceAccountName: terminal

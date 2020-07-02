@@ -1,0 +1,20 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    config:
+      armory:
+        dinghy:
+          enabled: true
+          templateOrg: armory
+          templateRepo: se-pipeline-modules
+          githubToken: encrypted:s3!r:us-west-2!b:armory-sales-secrets!f:away-spinnaker/secrets.yaml!k:github.token
+          githubEndpoint: https://api.github.com
+          dinghyFilename: dinghyfile
+          autoLockPipelines: true
+          notifiers:
+            slack:
+              enabled: true
+              channel: se-notifications

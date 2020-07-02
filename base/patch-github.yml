@@ -1,0 +1,15 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    config:
+      artifacts:
+        github:
+          enabled: true
+          accounts:
+          - name: githubArmorySpinnakerCommits
+            token: encrypted:s3!b:armory-sales-secrets!f:spinnaker-secrets.yml!r:us-west-2!k:github.token
+          - name: github
+            token: encrypted:s3!b:armory-sales-secrets!f:spinnaker-secrets.yml!r:us-west-2!k:github.token

@@ -1,0 +1,29 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  # spec.spinnakerConfig - This section is how to specify configuration spinnaker
+  spinnakerConfig:
+    # spec.spinnakerConfig.config - This section contains the contents of a deployment found in a halconfig .deploymentConfigurations[0]
+    config:
+      security:
+        authn:
+          oauth2:
+            enabled: true
+            client:
+              clientId: encrypted:s3!b:armory-sales-secrets!f:spinnaker-secrets.yml!r:us-west-2!k:vincentoauth2.clientId
+              clientSecret: encrypted:s3!b:armory-sales-secrets!f:spinnaker-secrets.yml!r:us-west-2!k:vincentoauth2.clientSecret
+              accessTokenUri: https://github.com/login/oauth/access_token
+              userAuthorizationUri: https://github.com/login/oauth/authorize
+              scope: read:org,user:email
+              preEstablishedRedirectUri: https://vincent.se.armory.io/api/v1/login
+              useCurrentUri: false
+            resource:
+              userInfoUri: https://api.github.com/user
+            userInfoMapping:
+              email: email
+              firstName: ''
+              lastName: name
+              username: login
+            provider: GITHUB

@@ -1,0 +1,12 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    config:
+      notifications:
+        slack:
+          enabled: true
+          botName: salesdemospinbot
+          token: encrypted:s3!b:armory-sales-secrets!f:spinnaker-secrets.yml!r:us-west-2!k:slack.token

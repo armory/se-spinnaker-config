@@ -1,0 +1,32 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  # spec.spinnakerConfig - This section is how to specify configuration spinnaker
+  spinnakerConfig:
+    # spec.spinnakerConfig.config - This section contains the contents of a deployment found in a halconfig .deploymentConfigurations[0]
+    config:
+      providers:
+        dockerRegistry:
+          enabled: true
+          accounts:
+          - name: docker-registry-away168
+            requiredGroupMembership: []
+            providerVersion: V1
+            permissions: {}
+            address: https://index.docker.io
+            username: away168
+            password: encrypted:s3!b:armory-sales-secrets!f:spinnaker-secrets.yml!r:us-west-2!k:docker.passwordaway
+            email: andrew.way@armory.io
+            cacheIntervalSeconds: 30
+            clientTimeoutMillis: 60000
+            cacheThreads: 1
+            paginateSize: 100
+            sortTagsByDate: false
+            trackDigests: false
+            insecureRegistry: false
+            repositories:
+            - away168/mysite
+            - away168/rps
+          primaryAccount: docker-registry-away168
