@@ -13,3 +13,11 @@ spec:
             token: encrypted:s3!b:armory-sales-secrets!f:spinnaker-secrets.yml!r:us-west-2!k:github.token
           - name: github
             token: encrypted:s3!b:armory-sales-secrets!f:spinnaker-secrets.yml!r:us-west-2!k:github.token
+    profiles:
+      clouddriver:
+        artifacts:
+          gitRepo:
+            enabled: true
+            accounts:
+            - name: gitrepo
+              token: encrypted:s3!b:armory-sales-secrets!f:spinnaker-secrets.yml!r:us-west-2!k:github.token
