@@ -5,8 +5,9 @@ metadata:
 spec:
   spinnakerConfig:
     config:
-      terraform:
-        enabled: true
-        git:
+      armory:
+        terraform:
           enabled: true
-          accessToken: encrypted:s3!b:armory-sales-secrets!f:spinnaker-secrets.yml!r:us-west-2!k:github.token
+          git:
+            enabled: true
+            accessToken: encrypted:s3!b:armory-sales-secrets!f:spinnaker-secrets.yml!r:us-west-2!k:github.token
