@@ -16,7 +16,7 @@ patchesStrategicMerge:
 - patch-jenkins.yml 
 - patch-github.yml
 #- patch-auth.yml # github login
-#- patch-dinghy.yml
+- patch-dinghy.yml
 - patch-terraform.yml 
 #- patch-aws.yml
 
