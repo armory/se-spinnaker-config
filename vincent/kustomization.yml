@@ -14,5 +14,5 @@ patchesStrategicMerge:
 - patch-providers-k8s.yml # using serviceAccounts
 - patch-version.yml # spinnaker Version
 - patch-endpoint.yml # vincent.se.armory.io and gate endpoint: api/v1/
-# - patch-redis.yml # use spinnaker redis
 - patch-auth.yml # github oauth
+- patch-policyengine.yml
