@@ -1,0 +1,24 @@
+apiVersion: v1
+data:
+  policyapp-runtime-lb22.rego: |
+    # Notice the package. The package maps to the task you want to create a policy for.
+    package spinnaker.deployment.tasks.deployManifest
+
+    deny[msg] {
+        msg := "LoadBalancer Services must not have port 22 open."
+        manifests := input.deploy.manifests
+        manifest := manifests[_]
+
+        manifest.kind == "Service"
+        manifest.spec.type == "ClusterIP"
+
+        port := manifest.spec.ports[_]
+        port.port == 22
+    }
+kind: ConfigMap
+metadata:
+  name: policyapp-runtime-lb22
+  namespace: opa
+  labels:
+    group: "dev"
+    type: "runtime"

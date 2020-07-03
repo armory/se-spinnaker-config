@@ -16,8 +16,41 @@ spec:
                   armory.policyEngine:
                     enabled: true
                     config:
-                      baseUrl: http://opa.opa:8181/v1
+                      opa:
+                        baseUrl: http://opa.opa:8181/v1
             repositories:
               armory:
                 url: https://raw.githubusercontent.com/armory-plugins/policy-engine-releases/master/repositories.json
         armory.policyEngine.opa.baseUrl: http://opa.opa:8181/v1
+      # front50:
+      #   spinnaker:
+      #     extensibility:
+      #       plugins:
+      #         Armory.PolicyEngine:
+      #           enabled: true
+      #           version: 0.0.12
+      #           extensions:
+      #             armory.policyEngine:
+      #               enabled: true
+      #               config:
+      #                 opa: 
+      #                   baseUrl: http://opa.opa:8181/v1
+      #       repositories:
+      #         armory:
+      #           url: https://raw.githubusercontent.com/armory-plugins/policy-engine-releases/master/repositories.json
+      # orca:
+      #   spinnaker:
+      #     extensibility:
+      #       plugins:
+      #         Armory.PolicyEngine:
+      #           enabled: true
+      #           version: 0.0.12
+      #           extensions:
+      #             armory.policyEngine:
+      #               enabled: true
+      #               config:
+      #                 opa: 
+      #                   baseUrl: http://opa.opa:8181/v1
+      #       repositories:
+      #         armory:
+      #           url: https://raw.githubusercontent.com/armory-plugins/policy-engine-releases/master/repositories.json
