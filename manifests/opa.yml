@@ -87,7 +87,7 @@ spec:
               scheme: HTTP
               port: 8181
             initialDelaySeconds: 3
-            periodSeconds: 5
+            periodSeconds: 120
           resources:
             limits:
               cpu: 200m
