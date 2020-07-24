@@ -18,7 +18,7 @@ spec:
                 - encrypted:k8s!n:tfcloud-armory-sales!k:bearertoken
               Content-Type:
                 - application/vnd.api+json
-            url: https://${parameterValues['TFE_ADDR']}/api/v2/runs/${parameterValues['RUN_ID']}/actions/apply
+            url: "https://${parameterValues['TFE_ADDR']}/api/v2/runs/${parameterValues['RUN_ID']}/actions/apply"
             payload: |-
               {
                 "comment": "${parameterValues['comment']}"
@@ -46,7 +46,7 @@ spec:
                 - encrypted:k8s!n:tfcloud-armory-sales!k:bearertoken
               Content-Type:
                 - application/vnd.api+json
-            url: https://${parameterValues['TFE_ADDR']}/api/v2/runs/${parameterValues['RUN_ID']}/actions/discard
+            url: "https://${parameterValues['TFE_ADDR']}/api/v2/runs/${parameterValues['RUN_ID']}/actions/discard"
             payload: |-
               {
                 "comment": "${parameterValues['comment']}"
