@@ -12,7 +12,7 @@ spec:
           enabled: true
           primaryAccount: dev-us-west-2
           accounts:
-          - name: vincent
+          - name: spinnaker
             providerVersion: V2
             namespaces:
             - vincent 
