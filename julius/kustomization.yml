@@ -17,4 +17,6 @@ patchesStrategicMerge:
 - patch-version.yml # spinnaker Version
 - patch-endpoint.yml # vincent.se.armory.io and gate endpoint: api/v1/
 - patch-redis.yml # use spinnaker redis
+- patch-policyengine.yml 
+- patch-version.yml
 #- ingress.yaml
