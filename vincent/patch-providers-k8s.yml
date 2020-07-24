@@ -15,7 +15,7 @@ spec:
           - name: spinnaker
             providerVersion: V2
             namespaces:
-            - vincent 
+            - $namespace # use kustomize variable
             liveManifestCalls: true
             onlySpinnakerManaged: true
             serviceAccount: true 
