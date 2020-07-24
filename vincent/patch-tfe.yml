@@ -130,11 +130,11 @@ spec:
                           command:
                           - "/tmp/scripts/terraformplan.sh"
                           args:
-                          - "${artifactAccount}"
-                          - "${reference}"
-                          - "${branch}"
-                          - "${parameters.subdirectory}"
-                          - "${parameters.bucketname}"
+                          - "artifactAccount"
+                          - "reference"
+                          - "branch"
+                          - "subdirectory"
+                          - "bucketname"
                           # ENVIRONMENT VARIABLES req'd
                           # TFE_TOKEN
                           # TFE_ORG 
