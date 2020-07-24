@@ -15,4 +15,5 @@ patchesStrategicMerge:
 - patch-version.yml # spinnaker Version
 - patch-endpoint.yml # vincent.se.armory.io and gate endpoint: api/v1/
 - patch-auth.yml # github oauth
-- patch-policyengine.yml
+- patch-policyengine.yml # armory policy engine
+- patch-tfe.yml # custom terraform enterprise stages
