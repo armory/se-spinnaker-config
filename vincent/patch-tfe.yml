@@ -1,0 +1,153 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      orca:
+        webhook:
+          preconfigured:
+          - label: TFE Apply
+            type: tfeapply
+            enabled: true
+            description: Terraform Enterprise Apply stage
+            method: POST
+            customHeaders:
+              Authorization:
+                - encrypted:k8s!n:tfcloud-armory-sales!k:bearertoken
+              Content-Type:
+                - application/vnd.api+json
+            url: https://${parameterValues['TFE_ADDR']}/api/v2/runs/${parameterValues['RUN_ID']}/actions/apply
+            payload: |-
+              {
+                "comment": "${parameterValues['comment']}"
+              }
+            parameters:
+              - label: TFE Address 
+                name: TFE_ADDR
+                description: Endpoint for TFE
+                defaultValue: app.terraform.io
+                type: string
+              - label: RUN ID
+                name: RUN_ID
+                description: Retrieve the RUN ID from the Plan
+                type: string
+              - label: Comment
+                name: comment
+                type: string
+          - label: TFE Discard
+            type: tfediscard
+            enabled: true
+            description: Terraform Enterprise Discard (cancel) stage
+            method: POST
+            customHeaders:
+              Authorization:
+                - encrypted:k8s!n:tfcloud-armory-sales!k:bearertoken
+              Content-Type:
+                - application/vnd.api+json
+            url: https://${parameterValues['TFE_ADDR']}/api/v2/runs/${parameterValues['RUN_ID']}/actions/discard
+            payload: |-
+              {
+                "comment": "${parameterValues['comment']}"
+              }
+            parameters:
+              - label: TFE Address 
+                name: TFE_ADDR
+                description: Endpoint for TFE
+                defaultValue: app.terraform.io
+                type: string
+              - label: RUN ID
+                name: RUN_ID
+                description: Retrieve the RUN ID from the Plan
+                type: string
+              - label: Comment
+                name: comment
+                type: string
+        job:
+          preconfigured:
+            kubernetes:
+              - label: TFE Plan
+                type: tfeplan
+                description: Terraform Enterprise Plan
+                cloudProvider: kubernetes
+                account: spinnaker
+                credentials: spinnaker
+                waitForCompletion: true
+                consumeArtifactSource: propertyFile
+                propertyFile: terraformplan
+                application: test
+                parameters:
+                  - name: artifactAccount
+                    label: Artifact Account
+                    description: e.g. gitrepo
+                    mapping: manifest.spec.template.spec.containers[0].args[0]
+                    defaultValue: "gitrepo"
+                  - name: reference
+                    label: reference
+                    description: e.g. url of git repo - https://github.com/armory/se-terraformer-demo.git
+                    mapping: manifest.spec.template.spec.containers[0].args[1]
+                  - name: branch
+                    label: branch
+                    mapping: manifest.spec.template.spec.containers[0].args[2]
+                  - name: subdirectory
+                    label: subdirectory
+                    description: the folder where main.tf resides
+                    mapping: manifest.spec.template.spec.containers[0].args[3]
+                  - name: bucketname
+                    label: bucketname
+                    description: for demo 
+                    mapping: manifest.spec.template.spec.containers[0].args[4]
+                  - name: tfe_org
+                    label: TFE Organization
+                    mapping: manifest.spec.template.spec.containers[0].env[1].value
+                  - name: tfe_addr
+                    label: TFE Address
+                    mapping: manifest.spec.template.spec.containers[0].env[2].value  
+                    description: app.terrform.io
+                    defaultValue: "app.terraform.io"
+                  - name: tfe_workspace
+                    label: TFE Workspace
+                    mapping: manifest.spec.template.spec.containers[0].env[3].value
+                manifest:
+                  apiVersion: batch/v1
+                  kind: Job
+                  metadata:
+                    name: terraformplan
+                  spec:
+                    template:
+                      spec:
+                        containers:
+                        - name: terraformplan
+                          image: away168/alpine:terraform
+                          imagePullPolicy: Always
+                          # ARGUMENTS:
+                          # 1. artifact account
+                          # 2. url (https git) (e.g. https://github.com/armory/se-terraformer-demo.git)
+                          # 3. branch (e.g. master)
+                          # 4. subdirectory (where is main.tf?)
+                          # 5. Bucketname
+                          command:
+                          - "/tmp/scripts/terraformplan.sh"
+                          args:
+                          - "${artifactAccount}"
+                          - "${reference}"
+                          - "${branch}"
+                          - "${parameters.subdirectory}"
+                          - "${parameters.bucketname}"
+                          # ENVIRONMENT VARIABLES req'd
+                          # TFE_TOKEN
+                          # TFE_ORG 
+                          # TFE_ADDR (optional) default: "app.terraform.io"
+                          # WORKSPACE 
+                          env:
+                          - name: TFE_TOKEN
+                            value: encrypted:k8s!n:tfcloud-armory-sales!k:token
+                          - name: TFE_ORG
+                            value: placeholder
+                          - name: TFE_ADDR
+                            value: placeholder
+                          - name: WORKSPACE
+                            value: placeholder
+                        restartPolicy: Never
+                    backoffLimit: 1
