@@ -9,9 +9,6 @@ commonAnnotations:
 bases:
 - ../base
 
-resources:
-#- ingress.yaml
-
 patchesStrategicMerge:
 - patch-providers-k8s.yml # using serviceAccounts
 - patch-version.yml # spinnaker Version
