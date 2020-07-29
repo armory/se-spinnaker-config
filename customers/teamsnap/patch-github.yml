@@ -9,8 +9,8 @@ spec:
         github:
           enabled: true
           accounts:
-          - name: garreeoke
-            username: garreeokearmory
+          - name: teamsnap-git
+            username: teamsnap
             token: encrypted:vault!e:secret!p:spinnaker/github!k:token
     profiles:
       clouddriver:

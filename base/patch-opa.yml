@@ -1,0 +1,17 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      clouddriver:
+        armory:
+          opa:
+            enabled: true
+            url: http://opa.opa:8181/v1
+      front50:
+        armory:
+          opa:
+            enabled: true
+            url: http://opa.opa:8181/v1

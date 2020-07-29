@@ -22,8 +22,8 @@ patchesStrategicMerge:
 - patch-dinghy.yml
 - patch-terraform.yml
 - patch-vault.yml
-- patch-logging.yml
-#- patch-files.yml
+#- patch-logging.yml
 #- patch-slack.yml
 #- patch-jenkins.yml
+#- patch-files.yml
 

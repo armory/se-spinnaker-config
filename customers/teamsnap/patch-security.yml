@@ -1,0 +1,12 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    config:
+      security:
+        apiSecurity:
+          overrideBaseUrl: http://gate.teamsnap.com
+        uiSecurity:
+          overrideBaseUrl: http://deck.teamsnap.com

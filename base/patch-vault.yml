@@ -1,0 +1,14 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    config:
+      armory:
+        secrets:
+          vault:
+            enabled: true
+            authMethod: KUBERNETES
+            url: http://vault.vault:8200
+            role: spinnaker

@@ -10,8 +10,8 @@ spec:
       persistentStorage:
         persistentStoreType: gcs
         gcs:
-          jsonPath: encryptedFile:k8s!n:spin-secrets!k:aaront-1-svc.json
-          project: aaront1
-          bucket: garreeoke-bucket1
+          jsonPath: encryptedFile:k8s!n:spin-secrets!k:gcp-key.json
+          project: POCs
+          bucket: armory-spinnaker
           bucketLocation: us
           rootFolder: front50

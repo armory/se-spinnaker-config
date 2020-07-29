@@ -4,6 +4,10 @@ metadata:
   name: spinnaker  # name doesn't matter since this is a patch
 spec:
   spinnakerConfig:
+    config:
+      features:
+        managedPipelineTemplatesV2UI: true
+        pipelineTemplates: true
     profiles:
       deck:
         settings-local.js: |
@@ -11,4 +15,5 @@ spec:
           window.spinnakerSettings.feature.artifactsRewrite = true;
           window.spinnakerSettings.authEnabled = true;
           window.spinnakerSettings.feature.terraform = true;
+          window.spinnakerSettings.feature.managedPipelineTemplatesV2UI = true;
 

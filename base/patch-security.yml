@@ -1,0 +1,12 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    config:
+      security:
+        apiSecurity:
+          overrideBaseUrl: http://gate.spin.armory.garreeoke.io
+        uiSecurity:
+          overrideBaseUrl: http://deck.spin.armory.garreeoke.io

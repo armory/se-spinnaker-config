@@ -8,14 +8,10 @@ spec:
     # spec.spinnakerConfig.config - This section contains the contents of a deployment found in a halconfig .deploymentConfigurations[0]
     config:
       providers:
-        dockerRegistry:
+        kubernetes:
           enabled: true
           accounts:
-          - name: garreeoke-armory-docker
-            address:  https://index.docker.io
-            username: garreeokearmory
-            password: encrypted:vault!e:secret!p:spinnaker/docker!k:password
-            providerVersion: V1
-            repositories:
-            - garreeoke/acmenode
-          primaryAccount: garreeoke-armory-docker
+            - name: gke-aaront-1
+              kubeconfigFile: encryptedFile:k8s!n:spin-secrets!k:kubeconfig-gke
+              onlySpinnakerManaged: false
+          primaryAccount: gke-aaront-1
