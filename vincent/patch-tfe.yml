@@ -18,7 +18,7 @@ spec:
                 - encrypted:k8s!n:tfcloud-armory-sales!k:bearertoken
               Content-Type:
                 - application/vnd.api+json
-            url: "https://${parameterValues['TFE_ADDR']}/api/v2/runs/${parameterValues['RUN_ID']}/actions/apply"
+            url: https://${parameterValues['TFE_ADDR']}/api/v2/runs/${parameterValues['RUN_ID']}/actions/apply
             payload: |-
               {
                 "comment": "${parameterValues['comment']}"
@@ -46,7 +46,7 @@ spec:
                 - encrypted:k8s!n:tfcloud-armory-sales!k:bearertoken
               Content-Type:
                 - application/vnd.api+json
-            url: "https://${parameterValues['TFE_ADDR']}/api/v2/runs/${parameterValues['RUN_ID']}/actions/discard"
+            url: https://${parameterValues['TFE_ADDR']}/api/v2/runs/${parameterValues['RUN_ID']}/actions/discard
             payload: |-
               {
                 "comment": "${parameterValues['comment']}"
@@ -76,28 +76,21 @@ spec:
                 waitForCompletion: true
                 consumeArtifactSource: propertyFile
                 propertyFile: terraformplan
-                application: test
+                application: tfe
                 parameters:
-                  - name: artifactAccount
+                  - name: artifact
                     label: Artifact Account
-                    description: e.g. gitrepo
-                    mapping: manifest.spec.template.spec.containers[0].args[0]
-                    defaultValue: "gitrepo"
-                  - name: reference
-                    label: reference
-                    description: e.g. url of git repo - https://github.com/armory/se-terraformer-demo.git
-                    mapping: manifest.spec.template.spec.containers[0].args[1]
-                  - name: branch
-                    label: branch
-                    mapping: manifest.spec.template.spec.containers[0].args[2]
+                    description: '#toJson(trigger.artifacts.^[type=="git/repo"])'
+                    mapping: manifest.spec.template.spec.containers[0].env[4].value
+                    defaultValue: '${#toJson(trigger.artifacts.^[type=="git/repo"])}'
                   - name: subdirectory
                     label: subdirectory
                     description: the folder where main.tf resides
-                    mapping: manifest.spec.template.spec.containers[0].args[3]
+                    mapping: manifest.spec.template.spec.containers[0].env[5].value
                   - name: bucketname
-                    label: bucketname
+                    label: Bucket Name
                     description: for demo 
-                    mapping: manifest.spec.template.spec.containers[0].args[4]
+                    mapping: manifest.spec.template.spec.containers[0].args[0]
                   - name: tfe_org
                     label: TFE Organization
                     mapping: manifest.spec.template.spec.containers[0].env[1].value
@@ -119,27 +112,21 @@ spec:
                       spec:
                         containers:
                         - name: terraformplan
-                          image: away168/alpine:terraform
-                          imagePullPolicy: Always
+                          image: away168/tfe:v0.2.0
                           # ARGUMENTS:
-                          # 1. artifact account
-                          # 2. url (https git) (e.g. https://github.com/armory/se-terraformer-demo.git)
-                          # 3. branch (e.g. master)
-                          # 4. subdirectory (where is main.tf?)
-                          # 5. Bucketname
+                          # bucketname
                           command:
-                          - "/tmp/scripts/terraformplan.sh"
-                          args:
-                          - "artifactAccount"
-                          - "reference"
-                          - "branch"
-                          - "subdirectory"
-                          - "bucketname"
+                          - ./terraformplan.sh
+                          args: 
+                          - placeholder
                           # ENVIRONMENT VARIABLES req'd
                           # TFE_TOKEN
                           # TFE_ORG 
                           # TFE_ADDR (optional) default: "app.terraform.io"
                           # WORKSPACE 
+                          # ARTIFACT_SERVICE (optional) default: "http://spin-clouddriver:7002"
+                          # ARTIFACT_JSON use SpEL, e.g. `#toJson(artifact)`
+                          # SUBDIRECTORY - where main.tf resides inside git repo
                           env:
                           - name: TFE_TOKEN
                             value: encrypted:k8s!n:tfcloud-armory-sales!k:token
@@ -149,5 +136,11 @@ spec:
                             value: placeholder
                           - name: WORKSPACE
                             value: placeholder
+                          - name: ARTIFACT_JSON
+                            value: placeholder
+                          - name: SUBDIRECTORY
+                            value: placeholder
+                          #- name: ARTIFACT_SERVICE
+                          #  value: "http://spin-clouddriver:7002"
                         restartPolicy: Never
                     backoffLimit: 1
