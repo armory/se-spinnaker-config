@@ -9,4 +9,5 @@ spec:
         settings-local.js: |
           window.spinnakerSettings.feature.kustomizeEnabled = true;
           window.spinnakerSettings.feature.artifactsRewrite = true;
+          window.spinnakerSettings.feature.terraform = true;
 

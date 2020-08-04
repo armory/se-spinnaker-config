@@ -15,11 +15,3 @@ spec:
           ssl:
             enabled: false
           overrideBaseUrl: https://spinnaker.se.armory.io
-    profiles:
-      gate:
-        server:
-          servlet:
-            context-path: /api/v1
-    service-settings:
-      gate:
-        healthEndpoint: /api/v1/health

@@ -27,3 +27,10 @@ spec:
               lastName: name
               username: login
             provider: GITHUB
+    profiles:
+      gate:
+        security:
+          oauth2:
+            providerRequirements:
+              type: github
+              organization: armory

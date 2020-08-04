@@ -1,0 +1,13 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profile:
+      echo: 
+        rest:
+          enabled: true
+          endpoints: 
+            - wrap: false
+              url: "https://endpoint4.collection.us2.sumologic.com/receiver/v1/http/ZaVnC4dhaV29O61iNY5mNkvDP2trseqS9WZ7kbwj4KOk-PAhpfTvgDUlzSH9MIgEzl4cFVanmVFGxLArkKb2SZEgXojLrB0ICv92Z0EGII98ajFWfRPeqg=="

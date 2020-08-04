@@ -1,0 +1,88 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      orca:
+        webhook:                                                                                                                                                                                             
+          preconfigured:                                                                                                                                                                                     
+          - # stage name in stage selector drop down                                                                                                                                                         
+            label: "Create Change Request in ServiceNow"                                                                                                                                                     
+            enabled: true                                                                                                                                                                                    
+            # UI description for stage                                                                                                                                                                       
+            description: Creates Change Request in ServiceNow                                                                                                                                                
+            # stage 'type' in stage definition                                                                                                                                                               
+            type: createChangeSNOW                                                                                                                                                                           
+            # Webhook type                                                                                                                                                                                   
+            method: POST                                                                                                                                                                                     
+            # URL for webhook call                                                                                                                                                                           
+            url: https://dev90307.service-now.com/api/77303/spinnakerwebhooklistener/change                                                                                                                  
+            customHeaders:                                                                                                                                                                                   
+              # Any necessary headers (supports S3 / Vault)                                                                                                                                                  
+              # Authorization: Basic c2VydmljZWFjY291bnQ6cGFzc3dvcmQK                                                                                                                                        
+              Content-Type: application/json                                                                                                                                                                 
+            # Payload for the request                                                                                                                                                                        
+            payload: |-                                                                                                                                                                                      
+              {                                                                                                                                                                                              
+                "short_description": "${parameterValues['short_description']}",                                                                                                                              
+                "description": "${parameterValues['description']}",
+                "build_tag": "${parameterValues['build_tag']}",
+                "docker_digest": "${parameterValues['docker_digest']}",
+                "git_commit_hash": "${parameterValues['git_commit_hash']}"
+                                                                                                                                                          
+              }                                                                                                                                                                                              
+            # Zero or more parameters                                                                                                                                                                        
+            parameters:                                                                                                                                                                                      
+              - label: Short Description                                                                                                                                                                     
+                name: short_description                                                                                                                                                                      
+                description: Enter the Short Description for the Change Request. Supports Pipeline Expressions.                                                                                              
+                type: string                                                                                                                                                                                 
+              - label: Description (optional)                                                                                                                                                                
+                name: description                                                                                                                                                                            
+                description: Enter the Description for the Change Request. Supports Pipeline Expressions.                                                                                                   
+                type: string
+              - label: Docker BuildTag (optional)
+                name: build_tag
+                description: The Docker Build Tag
+                type: string
+              - label: Docker Digest
+                name: docker_digest
+                description: The Digest of the Docker Image
+                type: string
+              - label: Commit Hash
+                name: git_commit_hash
+                description: The Commit Hash from Git that triggered the build of the container
+                type: string                                                                               
+          - # stage name in stage selector drop down                                                   
+            label: "Create Incident in ServiceNow"                                               
+            enabled: true                                                                              
+            # UI description for stage                                                                 
+            description: Creates Incident in ServiceNow                                          
+            # stage 'type' in stage definition                                                         
+            type: createIncident                                                                     
+            # Webhook type                                                                             
+            method: POST                                                                               
+            # URL for webhook call                                                                     
+            url: https://dev90307.service-now.com/api/77303/spinnakerwebhooklistener/incident            
+            customHeaders:                                                                             
+              # Any necessary headers (supports S3 / Vault)                                            
+              # Authorization: Basic c2VydmljZWFjY291bnQ6cGFzc3dvcmQK                                  
+              Content-Type: application/json                                                           
+            # Payload for the request                                                                  
+            payload: |-                                                                                
+              {                                                                                        
+                "short_description": "${parameterValues['short_description']}",                        
+                "description": "${parameterValues['description']}"                                     
+              }                                                                                        
+            # Zero or more parameters                                                                  
+            parameters:                                                                                
+              - label: Short Description                                                               
+                name: short_description                                                                
+                description: Enter the Short Description for the Change Request. Supports Pipeline Expressions.
+                type: string                                                                                   
+              - label: Description (optional)                                                                  
+                name: description                                                                              
+                description: Enter the Description for the Change Request. Supports Pipeline Expressions.      
+                type: string 

@@ -16,3 +16,6 @@ patchesStrategicMerge:
 - patch-endpoint.yml # vincent.se.armory.io and gate endpoint: api/v1/
 - patch-version.yml
 - patch-stats.yml
+- patch-policyengine.yml
+- patch-servicenow.yml
+- patch-logging.yml

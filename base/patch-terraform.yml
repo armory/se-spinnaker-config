@@ -11,3 +11,10 @@ spec:
           git:
             enabled: true
             accessToken: encrypted:s3!b:armory-sales-secrets!f:spinnaker-secrets.yml!r:us-west-2!k:github.token
+    service-settings:
+      terraformer:
+        kubernetes:
+          volumes:
+          - id: terraformer-credentials
+            type: configMap
+            mountPath: /home/spinnaker/.aws/
