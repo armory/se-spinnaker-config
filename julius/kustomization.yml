@@ -1,7 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-namespace: julius 
+namespace: spinnaker 
 
 commonAnnotations:
   kustomizePath: "/etc/spinnaker/kustomize/julius"
@@ -10,10 +10,9 @@ bases:
 - ../base
 
 patchesStrategicMerge:
+- patch-auth.yml
 - patch-providers-k8s.yml # using serviceAccounts
 - patch-version.yml # spinnaker Version
 - patch-endpoint.yml # vincent.se.armory.io and gate endpoint: api/v1/
-- patch-redis.yml # use spinnaker redis
-- patch-policyengine.yml 
 - patch-version.yml
-#- ingress.yaml
+- patch-stats.yml

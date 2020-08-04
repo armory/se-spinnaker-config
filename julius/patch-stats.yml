@@ -1,0 +1,21 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    config:
+      stats:
+        enabled: true
+        endpoint: https://stats.spinnaker.io
+        instanceId: 01E6PYXP2BEF27RGWWVTE3EZTC
+        deploymentMethod: {}
+        connectionTimeoutMillis: 3000
+        readTimeoutMillis: 5000
+      armory:
+        diagnostics:
+          enabled: true
+          uuid: ff19068b-e6cb-46d0-93fd-527a468a4aeb
+          logging:
+            enabled: true
+            endpoint: https://debug.armory.io/v1/logs

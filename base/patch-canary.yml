@@ -1,0 +1,36 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    config:
+      canary:
+        enabled: true
+        serviceIntegrations:
+        - name: prometheus
+          enabled: true
+          accounts:
+          - name: prometheus
+            endpoint:
+              baseUrl: http://prometheus-k8s.monitoring:9090/
+            supportedTypes:
+            - METRICS_STORE
+        - name: aws
+          enabled: true
+          accounts:
+          - name: s3bucket
+            bucket: armory-sales-ephemeral
+            region: us-west-2
+            rootFolder: kayenta
+            supportedTypes:
+            - CONFIGURATION_STORE
+            - OBJECT_STORE
+          s3Enabled: true
+        reduxLoggerEnabled: true
+        defaultMetricsAccount: prometheus
+        defaultJudge: NetflixACAJudge-v1.0
+        defaultMetricsStore: prometheus
+        stagesEnabled: true
+        templatesEnabled: true
+        showAllConfigsEnabled: true
