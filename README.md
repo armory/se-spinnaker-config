@@ -18,6 +18,6 @@ tweaks to each instance will be done in their own respective folders (e.g. vince
 
 ## Directory structure
 
-base/ - contains all the common configuration for spinnaker
-vincent/ - contains any patches specific to vincent 
-julius/ - *TODO* add configuration for other spinnaker instance
+* base/ - contains all the common configuration for spinnaker
+* vincent/ - contains any patches specific to vincent 
+* julius/ - *TODO* add configuration for other spinnaker instance
