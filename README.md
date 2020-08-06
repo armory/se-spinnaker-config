@@ -19,5 +19,7 @@ tweaks to each instance will be done in their own respective folders (e.g. vince
 ## Directory structure
 
 * base/ - contains all the common configuration for spinnaker
-* vincent/ - contains any patches specific to vincent 
-* julius/ - *TODO* add configuration for other spinnaker instance
+* vincent/ - contains any patches specific to vincent (vincent.se.armory.io) - the goal is to have vincent test the latest features
+* julius/ - contains patches specific for julius (spinnaker.se.armory.io) - the goal is to have a stable demo environment (tried & true and only GA products)
+* manifests/ - common manifests used for supporting products like OPA and Prometheus (TODO)
+* policies/ - example CM or REGOs of policies for policy engine
