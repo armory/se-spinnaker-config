@@ -1,0 +1,13 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    service-settings:
+      front50:
+        kubernetes:
+          volumes:
+          - id: custom-ca-cert
+            type: secret
+            mountPath: /etc/ssl/certs/java
