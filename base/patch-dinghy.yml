@@ -10,7 +10,7 @@ spec:
           enabled: true
           templateOrg: armory
           templateRepo: se-pipeline-modules
-          githubToken: encrypted:s3!r:us-west-2!b:armory-sales-secrets!f:away-spinnaker/secrets.yaml!k:github.token
+          githubToken: encrypted:k8s!n:github-spinnaker-se!k:token
           githubEndpoint: https://api.github.com
           dinghyFilename: dinghyfile
           autoLockPipelines: true

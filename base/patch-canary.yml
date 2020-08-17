@@ -13,7 +13,7 @@ spec:
           accounts:
           - name: prometheus
             endpoint:
-              baseUrl: http://prometheus-k8s.monitoring:9090/
+              baseUrl: http://prometheus-operated.monitoring:9090/
             supportedTypes:
             - METRICS_STORE
         - name: aws
