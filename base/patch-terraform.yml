@@ -15,6 +15,6 @@ spec:
       terraformer:
         kubernetes:
           volumes:
-          - id: terraformer-credentials
-            type: configMap
+          - id: aws-s3-terraform
+            type: secret
             mountPath: /home/spinnaker/.aws/
