@@ -1,0 +1,20 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  kustomize:
+    gate:
+      service:
+        patchesStrategicMerge:
+          - |
+            metadata:
+              annotations:
+                cloud.google.com/neg: '{"ingress": true}'
+    deck:
+      service:
+        patchesStrategicMerge:
+          - |
+            metadata:
+              annotations:
+                cloud.google.com/neg: '{"ingress": true}'

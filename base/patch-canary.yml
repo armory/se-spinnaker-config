@@ -1,0 +1,46 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  #validation:
+    #metricStores:
+      #enabled: false
+  spinnakerConfig:
+    config:
+      canary:
+        enabled: true
+        serviceIntegrations:
+          - name: aws
+            enabled: false
+          - name: google
+            enabled: true
+            accounts:
+              - name: google1
+                project: aaront1
+                jsonPath: encryptedFile:k8s!n:spin-secrets!k:aaront-1-svc.json
+                bucket: garreeoke-bucket1
+                #bucketLocation: us-west-1a
+                rootFolder: kayenta
+                supportedTypes:
+                  - METRICS_STORE
+                  - CONFIGURATION_STORE
+                  - OBJECT_STORE
+            gcsEnabled: false
+            stackdriverEnabled: false
+        reduxLoggerEnabled: true
+        defaultMetricsAccount: google1
+        defaultStorageAccount: google1
+        defaultJudge: NetflixACAJudge-v1.0
+        defaultMetricsStore: stackdriver
+        stagesEnabled: true
+        templatesEnabled: true
+        showAllConfigsEnabled: true
+    #service-settings:
+     # kayenta:
+      #  kubernetes:
+       #   volumes:
+        #    - id: gcpjsontoken
+         #     type: secret
+          #    defaultMode: 420
+           #   mountPath: /home/spinnaker/.google

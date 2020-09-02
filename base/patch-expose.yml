@@ -4,8 +4,15 @@ metadata:
   name: spinnaker
 spec:
   expose:
-    type: service
+    type: ingress
     service:
-      type: NodePort
+      #type: ClusterIP
       annotations: {}
       overrides: {}
+        #deck:
+          #annotations:
+          #  cloud.google.com/neg: '{"ingress": true}'
+          #  aaron.annotationstest1: "true"
+        #gate:
+          #annotations:
+           # cloud.google.com/neg: '{"ingress": true}'

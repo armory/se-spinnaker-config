@@ -1,11 +1,19 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: ingress
-  labels:
-    app: "spin"
-  annotations:
-    kubernetes.io/ingress.class: "nginx"
-    # nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+  name: spinnaker
+  namespace: spinnaker
 spec:
-  rules: []
+  rules:
+    - host: deck.spin.armory.garreeoke.io
+      http:
+        paths:
+          - backend:
+              serviceName: spin-deck
+              servicePort: 9000
+    - host: gate.spin.armory.garreeoke.io
+      http:
+        paths:
+          - backend:
+              serviceName: spin-gate
+              servicePort: 8084

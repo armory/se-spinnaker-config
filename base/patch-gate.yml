@@ -11,10 +11,18 @@ spec:
             enabled: true
           user:
             name: aaron
-            password: aaron123456
+            password: aaron1234567
         server:
           tomcat:
             protocolHeader: X-Forwarded-Proto
             remoteIpHeader: X-Forwarded-For
             internalProxies: .*
             httpServerPort: X-Forwarded-Port
+    service-settings:
+      gate:
+        healthEndpoint: /health
+        kubernetes:
+          serviceAnnotations:
+            cloud.google.com/neg: '{"ingress": true}'
+          podAnnotations:
+            aaron-test: "true"

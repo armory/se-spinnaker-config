@@ -11,19 +11,23 @@ resources:
 patchesStrategicMerge:
 - patch-componentsizing.yml # custom resource limits & requests
 - patch-expose.yml
-- patch-security.yml
-- patch-profiles-gate.yml
+- patch-gate.yml
+- patch-deck.yml
+- patch-annotations.yml
 - patch-persistentStore.yml # gcs bucket
 - patch-provider-k8s.yml
 - patch-provider-docker.yml
-- patch-opa.yml
+- patch-policyengine.yml
 - patch-features.yml # UI Artifact Rewrite / Kustomize
 - patch-github.yml
 - patch-dinghy.yml
 - patch-terraform.yml
 - patch-vault.yml
-- patch-logging.yml
+- patch-logging.yml # Turn on debug logging
+- patch-canary.yml # Canary google config
 #- patch-files.yml
 #- patch-slack.yml
 #- patch-jenkins.yml
+#- patch-security.yml # Maybe not needed now when using ingress
+#- patch-opa.yml # old setup
 
