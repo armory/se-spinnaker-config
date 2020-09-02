@@ -90,7 +90,7 @@ spec:
                   - name: bucketname
                     label: Bucket Name
                     description: for demo 
-                    mapping: manifest.spec.template.spec.containers[0].args[0]
+                    mapping: manifest.spec.template.spec.containers[0].env[6].value
                   - name: tfe_org
                     label: TFE Organization
                     mapping: manifest.spec.template.spec.containers[0].env[1].value
@@ -112,13 +112,11 @@ spec:
                       spec:
                         containers:
                         - name: terraformplan
-                          image: away168/tfe:v0.2.0
+                          image: away168/tfe:v0.3.0
                           # ARGUMENTS:
                           # bucketname
                           command:
                           - ./terraformplan.sh
-                          args: 
-                          - placeholder
                           # ENVIRONMENT VARIABLES req'd
                           # TFE_TOKEN
                           # TFE_ORG 
@@ -139,6 +137,8 @@ spec:
                           - name: ARTIFACT_JSON
                             value: placeholder
                           - name: SUBDIRECTORY
+                            value: placeholder
+                          - name: BUCKET_NAME
                             value: placeholder
                           #- name: ARTIFACT_SERVICE
                           #  value: "http://spin-clouddriver:7002"
