@@ -20,7 +20,38 @@ spec:
             lifecycleHooks: []
           primaryAccount: aws-dev-1
           bakeryDefaults:
-            baseImages: []
+            baseImages:
+            # AMIs sourced from: https://cloud-images.ubuntu.com/locator/ec2/
+            - baseImage:
+                id: ubuntu18
+                shortDescription: v18.04
+                detailedDescription: Ubuntu Bionic Beaver
+                packageType: deb
+                # You can specify the templateFile used for this baseImage.
+                # If not specified, the default templateFile will be used.
+                templateFile: aws-ebs.json
+              virtualizationSettings:
+              - region: us-west-2
+                virtualizationType: hvm
+                instanceType: t2.micro
+                sourceAmi: ami-0a634ae95e11c6f91
+                sshUserName: ubuntu
+                spotPrice: 0
+                spotPriceAutoProduct: Linux/UNIX (Amazon VPC)
+            - baseImage:
+                id: ubuntu16
+                shortDescription: v16.04
+                detailedDescription: Ubuntu Xenial Xerus 
+                packageType: deb
+                templateFile: aws-ebs.json
+              virtualizationSettings:
+              - region: us-west-2
+                virtualizationType: hvm
+                instanceType: t2.micro
+                sourceAmi: ami-0807918df10edc141
+                sshUserName: ubuntu
+                spotPrice: 0
+                spotPriceAutoProduct: Linux/UNIX (Amazon VPC)  
           defaultKeyPairTemplate: '{{name}}-keypair'
           defaultRegions:
           - name: us-west-2
@@ -35,3 +66,10 @@ spec:
             permissions: {}
             awsAccount: aws-dev-1
           primaryAccount: ecs-dev-1
+    profiles:
+      clouddriver:
+        aws:
+          features:
+            cloudFormation:
+              enabled: true
+        
