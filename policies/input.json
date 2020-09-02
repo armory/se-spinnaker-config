@@ -1,0 +1,82 @@
+{
+  "description": "This pipeline is enforced by two policies: \n(A) MJ before Production (by namespace)\n(B) Image must be from a trusted registry",
+  "keepWaitingPipelines": false,
+  "lastModifiedBy": "chadtripod",
+  "limitConcurrent": true,
+  "stages": [
+    {
+      "account": "dev-us-west-2",
+      "cloudProvider": "kubernetes",
+      "manifests": [
+        {
+          "apiVersion": "apps/v1",
+          "kind": "Deployment",
+          "metadata": {
+            "labels": {
+              "app": "nginx"
+            },
+            "name": "helloworld",
+            "namespace": "prod"
+          },
+          "spec": {
+            "replicas": 1,
+            "selector": {
+              "matchLabels": {
+                "app": "nginx"
+              }
+            },
+            "template": {
+              "metadata": {
+                "labels": {
+                  "app": "nginx"
+                }
+              },
+              "spec": {
+                "containers": [
+                  {
+                    "image": "justinrlee:latest",
+                    "name": "nginx",
+                    "ports": [
+                      {
+                        "containerPort": 80
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "moniker": {
+        "app": "policyapp"
+      },
+      "name": "Deploy (Manifest)",
+      "namespaceOverride": "",
+      "refId": "1",
+      "requisiteStageRefIds": [
+        "2"
+      ],
+      "skipExpressionEvaluation": false,
+      "source": "text",
+      "trafficManagement": {
+        "enabled": false,
+        "options": {
+          "enableTraffic": false
+        }
+      },
+      "type": "deployManifest"
+    },
+    {
+      "failPipeline": true,
+      "judgmentInputs": [],
+      "name": "Manual Judgment",
+      "notifications": [],
+      "refId": "2",
+      "requisiteStageRefIds": [],
+      "type": "manualJudgment"
+    }
+  ],
+  "triggers": [],
+  "updateTs": "1598393220000"
+}
