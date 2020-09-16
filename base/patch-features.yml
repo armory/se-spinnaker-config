@@ -10,4 +10,5 @@ spec:
           window.spinnakerSettings.feature.kustomizeEnabled = true;
           window.spinnakerSettings.feature.artifactsRewrite = true;
           window.spinnakerSettings.feature.terraform = true;
+          window.spinnakerSettings.feature.functions = true;
 
