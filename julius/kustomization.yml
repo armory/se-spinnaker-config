@@ -19,3 +19,4 @@ patchesStrategicMerge:
 - patch-policyengine.yml
 - patch-servicenow.yml
 - patch-logging.yml
+- redis.yml

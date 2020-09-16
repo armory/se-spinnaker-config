@@ -1,0 +1,15 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    service-settings:
+      redis:
+        overrideBaseUrl: redis://armory-sales-julius-elasticache.fg3hcd.ng.0001.usw2.cache.amazonaws.com:6379   # External redis endpoint
+        skipLifeCycleManagement: true
+    profiles:
+      gate:
+        redis:
+          configuration:
+            secure: true
