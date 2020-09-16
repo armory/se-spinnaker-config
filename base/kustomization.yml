@@ -21,4 +21,5 @@ patchesStrategicMerge:
 - patch-canary.yml
 - patch-aws.yml
 - patch-s3artifact.yml
+- patch-helm.yml
 

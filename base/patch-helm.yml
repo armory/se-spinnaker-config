@@ -1,0 +1,15 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    config:
+      artifacts:
+        helm:
+          enabled: true
+          accounts:
+          - name: jfrog-armoryse
+            username: andrew.way@armory.io
+            repository: https://armoryse.jfrog.io/artifactory/helm
+            password: encrypted:k8s!n:jfrog-artifactory!k:apikey
