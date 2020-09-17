@@ -6,5 +6,5 @@ spec:
   spinnakerConfig:
     service-settings:
       redis:
-        overrideBaseUrl: redis://spin-redis.spinnaker:6379
+        overrideBaseUrl: redis://spin-redis.vincent:6379
         skipLifeCycleManagement: true

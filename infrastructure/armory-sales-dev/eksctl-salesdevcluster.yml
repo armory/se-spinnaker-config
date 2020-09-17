@@ -1,0 +1,16 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: armory-sales-dev-cluster 
+  region: us-west-2 
+
+nodeGroups:
+  - name: armory-sales-dev-ng-t3
+    labels: { name: armory-sales-dev-cluster }
+    instanceType: t3.medium
+    desiredCapacity: 2
+    volumeSize: 100
+    privateNetworking: false
+    ssh:
+      publicKeyPath: /Users/away/.ssh/sharedsekey.pub
