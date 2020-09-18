@@ -17,4 +17,5 @@ patchesStrategicMerge:
 - patch-auth.yml # github oauth
 - patch-tfe.yml # custom terraform enterprise stages
 - patch-mysql.yml # mysql clouddriver
+- patch-kubesvc-plugin.yml
 #- patch-validation.yml

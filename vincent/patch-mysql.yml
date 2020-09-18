@@ -28,7 +28,7 @@ spec:
             readBatchSize: 500
             writeBatchSize: 300
           scheduler:
-            enabled: true
+            enabled: false  # flip flop with redis.scheduler.enabled
           connectionPools:
             default:
               # additional connection pool parameters are available here,
@@ -51,12 +51,12 @@ spec:
             jdbcUrl: jdbc:mysql://mariadb:3306/clouddriver
             password: encrypted:k8s!n:mariadb-clouddriver!k:password
         redis:
-          enabled: false
+          enabled: true
           connection: redis://spin-redis.vincent:6379
           cache:
             enabled: false
           scheduler:
-            enabled: false  # if you have issues, try enabling redis and this flag: scheduler.
+            enabled: true  # if you have issues, try enabling redis and this flag: scheduler.
           taskRepository:
             enabled: false
 
