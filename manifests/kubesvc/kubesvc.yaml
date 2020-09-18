@@ -1,0 +1,22 @@
+kubernetes:
+  accounts:
+  - name: armory-sales-dev
+    serviceAccount: true
+  # Add your accounts here, /kubeconfigfiles is the path where kubeconfig files added
+  # to kustomization.yaml are mounted.
+#  - kubeconfigFile: /kubeconfigfiles/kubecfg-test.yml
+#    name: account1
+#    metrics: false
+#    kinds: []
+#    omitKinds: []
+
+clouddriver:
+  grpc: vincent-clouddriver.se.armory.io
+  insecure: true
+
+server:
+  port: 8082
+  
+prometheus:
+  enabled: true
+  # port: 8008
