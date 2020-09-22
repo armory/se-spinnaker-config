@@ -11,8 +11,10 @@ kubernetes:
 #    omitKinds: []
 
 clouddriver:
-  grpc: vincent-clouddriver.se.armory.io
-  insecure: true
+  #grpc: a6c62a609c4924be895e64f789166519-fa66194008d74fde.elb.us-west-2.amazonaws.com:9091
+  #insecure: true
+  grpc: kubesvc-vincent.se.armory.io:443
+  insecure: false
 
 server:
   port: 8082

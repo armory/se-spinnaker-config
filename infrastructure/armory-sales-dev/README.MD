@@ -9,3 +9,9 @@ Using EKSCTL to create Armory-Sales-Dev Cluster
 
 PreReqs: 
 - `sharedsekey.pub` (download from 1password) 
+
+Get kubeconfig:
+
+`aws sts get-caller-identity --profile armory-sales-dev`
+
+`aws eks --region us-west-2 update-kubeconfig --name armory-sales-dev-cluster --kubeconfig ~/.kube/base.yaml --profile armory-sales-dev`

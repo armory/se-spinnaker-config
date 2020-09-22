@@ -6,17 +6,8 @@ spec:
   spinnakerConfig:
     profiles:
       clouddriver:
-        spinnaker:
-          extensibility:
-            pluginsRootPath: /opt/clouddriver/lib/plugins
-            plugins:
-              Armory.Kubesvc:
-                enabled: true
-                extensions:
-                  armory.kubesvc:
-                    enabled: true
-      kubesvc:
-        cluster: redis
+        kubesvc:
+          cluster: redis
 #          eventsCleanupFrequencySeconds: 7200
 #          localShortCircuit: false
 #          runtime:
@@ -28,34 +19,3 @@ spec:
 #                  - kubernetesKind: MyKind.mygroup.acme
 #                    versioned: true
 #                    deployPriority: "400"
-  kustomize:
-    clouddriver:
-      service:
-        patchesStrategicMerge:
-          - |
-            spec:
-              ports:
-                - name: http
-                  port: 7002
-                - name: grpc
-                  port: 9091
-      deployment:
-        patchesStrategicMerge:
-          - |
-            spec:
-              template:
-                spec:
-                  initContainers:
-                  - name: kubesvc-plugin
-                    image: docker.io/armory/kubesvc-plugin:0.4.0
-                    volumeMounts:
-                      - mountPath: /opt/plugin/target
-                        name: kubesvc-plugin-vol
-                  containers:
-                  - name: clouddriver
-                    volumeMounts:
-                      - mountPath: /opt/clouddriver/lib/plugins
-                        name: kubesvc-plugin-vol
-                  volumes:
-                  - name: kubesvc-plugin-vol
-                    emptyDir: {}
