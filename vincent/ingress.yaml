@@ -7,6 +7,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-staging
     # nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   rules:
@@ -21,3 +22,7 @@ spec:
           serviceName: spin-gate
           servicePort: 8084
         path: /api/v1
+  tls:
+  - hosts:
+    - vincent.se.armory.io
+    secretName: vicent-cert
