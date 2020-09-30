@@ -14,12 +14,13 @@ spec:
     metadata:
       labels:
         app: spin
+        cluster: spin-redis
     spec:
       containers:
       - env:
         - name: MASTER
           value: "true"
-        image: us-docker.pkg.dev/spinnaker-community/releases/redis-cluster:v2
+        image: redis:latest
         imagePullPolicy: IfNotPresent
         name: redis
         ports:
