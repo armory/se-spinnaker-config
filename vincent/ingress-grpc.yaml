@@ -6,7 +6,7 @@ metadata:
     app: "spin"
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+    cert-manager.io/cluster-issuer: se-ca-issuer
     nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
     #nginx.ingress.kuberentes.io/proxy-buffer-size: "64k"  #debugging
 spec:
@@ -21,5 +21,5 @@ spec:
   tls:
   - hosts:
     - vincent-clouddriver.se.armory.io
-    secretName: vicent-clouddriver-cert
+    secretName: vincent-clouddriver-cert
 
