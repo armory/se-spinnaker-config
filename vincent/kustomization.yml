@@ -18,7 +18,6 @@ patchesStrategicMerge:
 - patch-tfe.yml # custom terraform enterprise stages
 - patch-mysql.yml # mysql clouddriver
 - patch-redis.yml
-# both patch files required for kubesvc
-- patch-kubesvc-plugin.yml
-- patch-clouddriver-plugin.yml
-#- patch-validation.yml
+- patch-validation.yml
+- patch-kubesvc-plugin.yml  # both patch files required for kubesvc
+- patch-clouddriver-plugin.yml  # both patch files required for kubesvc
