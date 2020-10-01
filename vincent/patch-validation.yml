@@ -3,17 +3,22 @@ kind: SpinnakerService
 metadata:
   name: spinnaker
 spec:
-  spinnakerConfig:
-    spec:
-      validation:
-        kubernetes:
-          enabled: false
-        ci: 
-          enabled: false
-        metricStores:
-          enabled: false
-        persistentStorage:
-          enabled: false
-        notifications:
-          enabled: false
-        
+  validation:
+    providers:
+      kubernetes:
+        enabled: false
+      docker:
+        enabled: true
+      aws:
+        enabled: true
+      s3:
+        enabled: true
+      ci: 
+        enabled: true
+      metricStores:
+        enabled: true
+      persistentStorage:
+        enabled: true
+      notifications:
+        enabled: true
+      
