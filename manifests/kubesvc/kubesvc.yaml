@@ -11,11 +11,10 @@ kubernetes:
 #    omitKinds: []
 
 clouddriver:
-  #grpc: a6c62a609c4924be895e64f789166519-fa66194008d74fde.elb.us-west-2.amazonaws.com:9091
-  #insecure: true
-  #grpc: kubesvc-vincent.se.armory.io:443
   grpc: vincent-clouddriver.se.armory.io:443
   insecure: false
+
+#certFile: /opt/kubesvc/cert/tls.crt
 
 server:
   port: 8082

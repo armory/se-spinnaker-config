@@ -47,6 +47,8 @@ spec:
           name: volume-kubesvc-config
         # - mountPath: /kubeconfigfiles
         #   name: volume-kubesvc-kubeconfigs
+        - mountPath: /opt/kubesvc/cert
+          name: kubesvc-cert
         resources:
           limits:
             cpu: 1000m
@@ -60,6 +62,9 @@ spec:
       - name: volume-kubesvc-config
         configMap:
           name: kubesvc-config
+      - name: kubesvc-cert
+        secret:
+          secretName: kubesvc-cert
       # - name: volume-kubesvc-kubeconfigs
       #   secret:
       #     defaultMode: 420
