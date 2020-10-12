@@ -37,7 +37,7 @@ spec:
           mountPath: "/var/lib/mysql"
         envFrom:
         - secretRef:
-            name: mariadb
+            name: mariadb  # secret containing --from-literal=MYSQL_ROOT_PASSWORD=[PASSWORD]
         ports:
         - containerPort: 3306
           protocol: TCP
