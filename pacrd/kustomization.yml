@@ -1,0 +1,6 @@
+# file: kustomization.yaml
+resources:
+  - pacrd-0.9.0.yaml
+patchesStrategicMerge:
+  - patch.yaml
+namespace: vincent  # Note: you should change this value if you are _not_ deploying into the `spinnaker` namespace.

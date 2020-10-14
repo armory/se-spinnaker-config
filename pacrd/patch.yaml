@@ -1,0 +1,15 @@
+# file: patch.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pacrd-config
+  namespace: vincent
+data:
+  pacrd.yaml: |
+    spinnakerServices:
+      # NOTE: change `spinnaker` to your namespace name here
+      front50: http://spin-front50.vincent:8080
+      orca: http://spin-orca.vincent:8083
+      # OPTIONAL: uncomment the next line to configure a Fiat service account.
+      # fiatServiceAccount: my-service-account
+

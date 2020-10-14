@@ -1,0 +1,23 @@
+# file: application.yaml
+apiVersion: pacrd.armory.spinnaker.io/v1alpha1
+kind: Application
+metadata:
+  name: rowboat
+spec:
+  email: seteam@armory.io
+  description: Armory Demo Application
+  # dataSources: # optional
+  #   enabled: 
+  #   - serverGroups
+  #   - executions
+  #   - loadBalancers
+  #   - securityGroups
+  #   # - functions
+  #   disabled: []
+  # permissions:  # optional
+  #   Read: 
+  #   - se-team
+  #   Write: 
+  #   - se-team
+  #   Execute: 
+  #   - se-team
