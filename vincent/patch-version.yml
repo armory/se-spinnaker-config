@@ -5,4 +5,4 @@ metadata:
 spec:
   spinnakerConfig:
     config:
-      version: 2.22.0
+      version: 2.21.4  # NOTE: when using armory agent (kubesvc) plugin - we need to match the two versions.
