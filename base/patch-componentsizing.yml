@@ -30,7 +30,7 @@ spec:
               memory: 256Mi
           echo:
             limits:
-              cpu: 300m
+              cpu: 500m
               memory: 1Gi
             requests:
               cpu: 150m
