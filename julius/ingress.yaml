@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
   labels:
     app: spin
   name: spinnaker
@@ -23,3 +24,9 @@ spec:
           serviceName: spin-gate
           servicePort: 8084
         path: /
+  tls:
+  - hosts:
+    - spinnaker.se.armory.io
+    - spinnaker-gate.se.armory.io
+    secretName: julius-cert
+  

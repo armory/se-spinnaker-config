@@ -1,0 +1,20 @@
+# file: pipeline.yaml
+apiVersion: pacrd.armory.spinnaker.io/v1alpha1
+kind: Pipeline
+metadata:
+  name: deploy-to-dev
+spec:
+  description: My First Pipeline with Spinnaker.
+  application: rowboat
+  stages:
+    # Note: In `v0.1.x` you are required to specify _both_ `type: BakeManifest`
+    #       as well as place options under a `bakeManifest` key. Consult the
+    #       "Known Limitations" section below for more information.
+    - type: ManualJudgment
+      name: Bake Successful?
+      refId: "1"
+      requisiteStageRefIds: []
+      manualJudgment:
+        comments: Was the bake successful?
+        failPipeline: true
+        instructions: Check to see if the helm template was baked correctly
