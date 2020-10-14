@@ -1,0 +1,28 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      clouddriver:
+        kubesvc:
+          cluster: redis
+          grpc:
+            server:
+              security:
+                enabled: false
+                certificateChain: encryptedFile:k8s!n:vincent-clouddriver-cert!k:ca.crt
+                privateKey: encryptedFile:k8s!n:vincent-clouddriver-cert!k:tls.key
+                clientAuth: OPTIONAL
+#          eventsCleanupFrequencySeconds: 7200
+#          localShortCircuit: false
+#          runtime:
+#            defaults:
+#              onlySpinnakerManaged: true
+#            accounts:
+#              account1:
+#                customResources:
+#                  - kubernetesKind: MyKind.mygroup.acme
+#                    versioned: true
+#                    deployPriority: "400"

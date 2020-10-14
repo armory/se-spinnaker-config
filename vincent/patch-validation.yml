@@ -7,6 +7,12 @@ spec:
     providers:
       kubernetes:
         enabled: false
+      docker:
+        enabled: true
+      aws:
+        enabled: true
+      s3:
+        enabled: true
       ci: 
         enabled: true
       metricStores:
@@ -15,4 +21,3 @@ spec:
         enabled: true
       notifications:
         enabled: true
-        

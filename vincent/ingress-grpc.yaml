@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-grpc
+  labels:
+    app: "spin"
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: se-ca-issuer
+    nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
+    #nginx.ingress.kuberentes.io/proxy-buffer-size: "64k"  #debugging
+spec:
+  rules:
+  - host: vincent-clouddriver.se.armory.io
+    http:
+      paths:
+      - backend:
+          serviceName: spin-clouddriver
+          servicePort: 9091
+        path: /
+  tls:
+  - hosts:
+    - vincent-clouddriver.se.armory.io
+    secretName: vincent-clouddriver-cert
+
