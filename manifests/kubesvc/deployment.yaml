@@ -48,7 +48,7 @@ spec:
         # - mountPath: /kubeconfigfiles
         #   name: volume-kubesvc-kubeconfigs
         - mountPath: /opt/kubesvc/cert
-          name: kubesvc-cert
+          name: armoryagent-cert
         resources:
           limits:
             cpu: 1000m
@@ -62,9 +62,9 @@ spec:
       - name: volume-kubesvc-config
         configMap:
           name: kubesvc-config
-      - name: kubesvc-cert
+      - name: armoryagent-cert
         secret:
-          secretName: kubesvc-cert
+          secretName: armoryagent-cert
       # - name: volume-kubesvc-kubeconfigs
       #   secret:
       #     defaultMode: 420

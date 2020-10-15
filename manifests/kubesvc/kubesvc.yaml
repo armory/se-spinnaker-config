@@ -14,7 +14,7 @@ clouddriver:
   grpc: vincent-clouddriver.se.armory.io:443
   insecure: false
 
-#certFile: /opt/kubesvc/cert/tls.crt
+certFile: /opt/kubesvc/cert/tls.crt
 
 server:
   port: 8082

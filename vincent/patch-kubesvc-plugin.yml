@@ -11,10 +11,10 @@ spec:
           grpc:
             server:
               security:
-                enabled: false
-                certificateChain: encryptedFile:k8s!n:vincent-clouddriver-cert!k:ca.crt
-                privateKey: encryptedFile:k8s!n:vincent-clouddriver-cert!k:tls.key
-                clientAuth: OPTIONAL
+                enabled: true
+                certificateChain: file:///opt/clouddriver/cert/tls.crt
+                privateKey: file:///opt/clouddriver/cert/tls.key
+                clientAuth: REQUIRE
 #          eventsCleanupFrequencySeconds: 7200
 #          localShortCircuit: false
 #          runtime:
