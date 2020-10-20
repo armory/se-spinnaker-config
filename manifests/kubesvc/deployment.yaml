@@ -21,8 +21,15 @@ spec:
         app.kubernetes.io/part-of: spinnaker
         cluster: spin-kubesvc
     spec:
+      # imagePullSecrets:
+      # - name: regcred
       containers:
-      - image: armory/kubesvc
+      - env:
+        - name: GRPC_GO_LOG_SEVERITY_LEVEL
+          value: INFO
+        - name: GRPC_GO_LOG_VERBOSITY_LEVEL
+          value: "9999"
+        image: armory/kubesvc
         imagePullPolicy: IfNotPresent
         name: kubesvc
         ports:
@@ -49,6 +56,9 @@ spec:
         #   name: volume-kubesvc-kubeconfigs
         - mountPath: /opt/kubesvc/cert
           name: armoryagent-cert
+        - mountPath: /etc/ssl/cert.pem
+          name: clouddrivercacert
+          subPath: cert.pem
         resources:
           limits:
             cpu: 1000m
@@ -65,6 +75,9 @@ spec:
       - name: armoryagent-cert
         secret:
           secretName: armoryagent-cert
+      - name: clouddrivercacert
+        secret:
+          secretName: clouddrivercacert
       # - name: volume-kubesvc-kubeconfigs
       #   secret:
       #     defaultMode: 420

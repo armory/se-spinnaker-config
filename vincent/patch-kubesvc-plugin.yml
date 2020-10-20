@@ -12,7 +12,8 @@ spec:
             server:
               security:
                 enabled: true
-                certificateChain: file:///opt/clouddriver/cert/tls.crt
+                certificateChain: file:///opt/clouddriver/cert/tls.crt    #list of crts
+                trustCertCollection: file:///opt/clouddriver/cert/tls.crt #cacert
                 privateKey: file:///opt/clouddriver/cert/tls.key
                 clientAuth: REQUIRE
 #          eventsCleanupFrequencySeconds: 7200
