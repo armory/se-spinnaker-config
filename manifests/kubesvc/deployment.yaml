@@ -50,12 +50,14 @@ spec:
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         volumeMounts:
+        - mountPath: /opt/kubesvc/cert
+          name: armoryagentcert
         - mountPath: /opt/spinnaker/config
           name: volume-kubesvc-config
-        - mountPath: /opt/kubesvc/cert
-          name: armoryagent-cert
-        - mountPath: /etc/ssl/cert.pem
+        - mountPath: /opt/kubesvc/cacert
           name: clouddrivercacert
+        - mountPath: /etc/ssl
+          name: certpem
         resources:
           limits:
             cpu: 1000m
@@ -69,12 +71,15 @@ spec:
       - name: volume-kubesvc-config
         configMap:
           name: kubesvc-config
-      - name: armoryagent-cert
+      - name: armoryagentcert
         secret:
-          secretName: armoryagent-cert
+          secretName: vincent-clouddriver-agent-cert
       - name: clouddrivercacert
         secret:
-          secretName: clouddrivercacert
+          secretName: vincent-custom-ca
+      - name: certpem
+        secret:
+          secretName: vincent-clouddriver-cacert-pem
       # - name: volume-kubesvc-kubeconfigs
       #   secret:
       #     defaultMode: 420

@@ -19,10 +19,10 @@ clouddriver:
   insecure: false
   tls:
     #serverName: my-ca  #to override the server name to verify (my-ca vs vincent...)
-    insecureSkipVerify: true #don't verify server's cert
+    insecureSkipVerify: false #if true, don't verify server's cert
     clientKeyFile: /opt/kubesvc/cert/tls.key #ref to the private key (mTLS)
     #clientKeyPassword: #if the above file is password protected
-    cacertFile: /etc/ssl/cert.pem #to validate server's cert
+    #cacertFile: /opt/kubesvc/cacert/ca.crt #to validate server's cert
     clientCertFile: /opt/kubesvc/cert/tls.crt #client cert for mTLS.
 
 #certFile: #deprecated

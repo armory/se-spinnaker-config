@@ -50,4 +50,4 @@ spec:
                     emptyDir: {}
                   - name: cert
                     secret:
-                      secretName: vincent-clouddriver-chad
+                      secretName: vincent-clouddriver-agent-v3
