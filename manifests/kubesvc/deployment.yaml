@@ -52,13 +52,10 @@ spec:
         volumeMounts:
         - mountPath: /opt/spinnaker/config
           name: volume-kubesvc-config
-        # - mountPath: /kubeconfigfiles
-        #   name: volume-kubesvc-kubeconfigs
         - mountPath: /opt/kubesvc/cert
           name: armoryagent-cert
         - mountPath: /etc/ssl/cert.pem
           name: clouddrivercacert
-          subPath: cert.pem
         resources:
           limits:
             cpu: 1000m
