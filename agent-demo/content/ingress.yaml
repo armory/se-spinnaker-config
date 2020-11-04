@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: spin-ingress
+spec:
+  rules:
+  - host: agent.dev.armory.io
+    http:
+      paths:
+        - path: /
+          backend:
+            serviceName: spin-deck
+            servicePort: 9000
+        - path: /api
+          backend:
+            serviceName: spin-gate
+            servicePort: 8084
+  tls:
+  - secretName: tls-secret
+    hosts:
+      - agent.dev.armory.io            

@@ -1,0 +1,70 @@
+apiVersion: spinnaker.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  expose:
+    type: ingress
+  spinnakerConfig:
+    config:
+      persistentStorage:
+        persistentStoreType: redis
+      providers:
+        kubernetes:
+          enabled: true
+          accounts:
+            - name: static-v2
+              kubeconfigFile: encryptedFile:k8s!n:static-kubeconfigs!k:kubecfg-dev.yaml
+          primaryAccount: static-v2
+      stats:
+        enabled: false
+      version: 1.22.2
+    profiles:
+      front50:
+        spinnaker.redis.enabled: false
+        sql:
+          enabled: true
+          connectionPools:
+            default:
+              default: true
+              jdbcUrl: jdbc:mysql://mysql.mysql:3306/front50
+              user: front50_service
+              password: encrypted:k8s!n:sql-secret!k:mysql-password
+          migration:
+            user: front50_migrate
+            password: encrypted:k8s!n:sql-secret!k:mysql-password
+            jdbcUrl: jdbc:mysql://mysql.mysql:3306/front50
+      clouddriver:
+        sql:
+          enabled: true
+          taskRepository:
+            enabled: true
+          cache:
+            enabled: true
+            readBatchSize: 500
+            writeBatchSize: 300
+          scheduler:
+            enabled: false # was true
+          connectionPools:
+            default:
+              default: true
+              jdbcUrl: jdbc:mysql://mysql.mysql:3306/clouddriver
+              user: clouddriver_service
+              password: encrypted:k8s!n:sql-secret!k:mysql-password
+            tasks:
+              user: clouddriver_service
+              jdbcUrl: jdbc:mysql://mysql.mysql:3306/clouddriver
+              password: encrypted:k8s!n:sql-secret!k:mysql-password
+          migration:
+            user: clouddriver_migrate
+            jdbcUrl: jdbc:mysql://mysql.mysql:3306/clouddriver
+            password: encrypted:k8s!n:sql-secret!k:mysql-password
+        redis:
+          connection: redis://spin-redis:6379
+          enabled: true
+          cache:
+            enabled: false
+          scheduler:
+            enabled: true
+          taskRepository:
+            enabled: true

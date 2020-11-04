@@ -1,0 +1,14 @@
+resources:
+- envoy-deployment.yaml
+- envoy-service.yaml
+
+configMapGenerator:
+- name: envoy-conf
+  files:
+  - envoy.yaml
+
+secretGenerator:
+- name: envoy-tls
+  files:
+  - cert/tls.key
+  - cert/tls.crt

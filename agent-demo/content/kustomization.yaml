@@ -1,0 +1,9 @@
+namespace: envoy
+
+resources:
+- ingress.yaml
+
+bases:
+  - spinnaker
+  # uncomment to install Envoy proxy pointing to clouddriver
+  # - agent-infra

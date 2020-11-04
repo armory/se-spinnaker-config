@@ -1,4 +1,4 @@
-apiVersion: spinnaker.armory.io/v1alpha2
+apiVersion: spinnaker.io/v1alpha2
 kind: SpinnakerService
 metadata:
   name: spinnaker
@@ -6,16 +6,9 @@ spec:
   spinnakerConfig:
     profiles:
       clouddriver:
+        # See https://docs.armory.io/docs/installation/armory-agent/agent-options/
         kubesvc:
           cluster: redis
-          grpc:
-            server:
-              security:
-                enabled: true
-                certificateChain: file:///opt/clouddriver/cert/tls.crt    #list of crts
-                trustCertCollection: file:///opt/clouddriver/cert/tls.crt #cacert
-                privateKey: file:///opt/clouddriver/cert/tls.key
-                clientAuth: REQUIRE
 #          eventsCleanupFrequencySeconds: 7200
 #          localShortCircuit: false
 #          runtime:

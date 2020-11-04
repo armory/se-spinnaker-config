@@ -1,0 +1,17 @@
+namespace: agent
+
+resources:
+  - serviceaccount.yaml
+
+bases:
+  - https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-0.3.0-rc.4-kustomize.tar.gz
+
+configMapGenerator:
+- name: kubesvc-config
+  behavior: merge
+  files:
+  - kubesvc.yaml
+
+
+patchesStrategicMerge:
+  - patch-agent-deployment.yaml
