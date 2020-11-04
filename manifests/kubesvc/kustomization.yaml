@@ -12,4 +12,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: armory/kubesvc
-  newTag: 0.2.0-rc.54
+  #newTag: 0.2.0-rc.54
+  newName: away168/kubesvc
+  newTag: 0.3.0tls
+#  newName: armory-docker-virtual.jfrog.io/armory/kubesvc
+#  newTag: 0.3.0-snapshot.feat.tls.options.6e5d1f2

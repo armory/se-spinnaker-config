@@ -2,6 +2,10 @@ kubernetes:
   accounts:
   - name: armory-sales-dev
     serviceAccount: true
+    #permissions: 
+    #  WRITE: 
+    #  - APPDEV_TEAMA
+    #  READ:
   # Add your accounts here, /kubeconfigfiles is the path where kubeconfig files added
   # to kustomization.yaml are mounted.
 #  - kubeconfigFile: /kubeconfigfiles/kubecfg-test.yml
@@ -13,11 +17,19 @@ kubernetes:
 clouddriver:
   grpc: vincent-clouddriver.se.armory.io:443
   insecure: false
+  tls:
+    #serverName: my-ca  #to override the server name to verify (my-ca vs vincent...)
+    insecureSkipVerify: false #if true, don't verify server's cert
+    clientKeyFile: /opt/kubesvc/cert/tls.key #ref to the private key (mTLS)
+    #clientKeyPassword: #if the above file is password protected
+    #cacertFile: /opt/kubesvc/cacert/ca.crt #to validate server's cert
+    clientCertFile: /opt/kubesvc/cert/tls.crt #client cert for mTLS.
 
-#certFile: /opt/kubesvc/cert/tls.crt
+#certFile: #deprecated
 
-server:
-  port: 8082
+# OPTIONAL
+# server:
+#   port: 8082
   
 prometheus:
   enabled: true

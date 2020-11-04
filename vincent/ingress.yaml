@@ -25,4 +25,4 @@ spec:
   tls:
   - hosts:
     - vincent.se.armory.io
-    secretName: vicent-cert
+    secretName: vincent-cert

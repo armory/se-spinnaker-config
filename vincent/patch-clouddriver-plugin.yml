@@ -43,6 +43,11 @@ spec:
                     volumeMounts:
                       - mountPath: /opt/clouddriver/lib/plugins
                         name: kubesvc-plugin-vol
+                      - mountPath: /opt/clouddriver/cert
+                        name: cert
                   volumes:
                   - name: kubesvc-plugin-vol
                     emptyDir: {}
+                  - name: cert
+                    secret:
+                      secretName: vincent-clouddriver-agent-v3
