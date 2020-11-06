@@ -1,0 +1,17 @@
+resources:
+- clouddriver-grpc-service.yaml
+
+bases:
+  - https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-0.2.0-kustomize.tar.gz  
+
+configMapGenerator:
+- name: kubesvc-config
+  behavior: merge
+  files:
+  - kubesvc.yaml
+
+
+secretGenerator:
+- name: kubeconfigs-secret
+  files:
+  - kubecfgs/kubecfg-dev.yaml  

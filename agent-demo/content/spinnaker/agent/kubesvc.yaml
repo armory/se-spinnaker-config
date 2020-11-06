@@ -1,0 +1,23 @@
+kubernetes:
+  accounts:
+  - name: agent-svc1
+    kubeconfigFile: /kubeconfigfiles/kubecfg-dev.yaml
+    metrics: true
+  # - name: agent-svc2
+  #   kubeconfigFile: /kubeconfigfiles/kubecfg-dev.yaml
+
+clouddriver:
+  grpc: spin-clouddriver-grpc:9091
+  insecure: true
+
+# local:
+  # enabled: true
+  # port: 10000
+
+# server:
+#   host: 0.0.0.0
+#   port: 8082
+  
+# prometheus:
+#   enabled: true
+  # port: 8008

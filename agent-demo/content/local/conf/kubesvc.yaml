@@ -1,0 +1,10 @@
+clouddriver:
+  grpc: grpc.agent.dev.armory.io:443
+  tls:
+    insecureSkipVerify: true
+
+
+kubernetes: 
+  accounts:
+  - kubeconfigFile: /opt/spinnaker/config/kubecfgs/kubecfg-dev.yaml
+    name: agent-infra01

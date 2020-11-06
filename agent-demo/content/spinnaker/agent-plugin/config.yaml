@@ -1,0 +1,22 @@
+apiVersion: spinnaker.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      clouddriver:
+        # See https://docs.armory.io/docs/installation/armory-agent/agent-options/
+        kubesvc:
+          cluster: redis
+#          eventsCleanupFrequencySeconds: 7200
+#          localShortCircuit: false
+#          runtime:
+#            defaults:
+#              onlySpinnakerManaged: true
+#            accounts:
+#              account1:
+#                customResources:
+#                  - kubernetesKind: MyKind.mygroup.acme
+#                    versioned: true
+#                    deployPriority: "400"

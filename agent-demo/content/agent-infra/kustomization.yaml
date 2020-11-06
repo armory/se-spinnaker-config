@@ -1,0 +1,7 @@
+namespace: envoy
+
+resources:
+- clouddriver-grpc-ingress.yaml
+
+bases:
+  - envoy

@@ -1,0 +1,11 @@
+kubernetes:
+  accounts:
+  - name: account_name_replace
+    serviceAccount: true
+    metrics: true
+
+
+clouddriver:
+  grpc: grpc.agent.dev.armory.io:443
+  tls:
+    insecureSkipVerify: true

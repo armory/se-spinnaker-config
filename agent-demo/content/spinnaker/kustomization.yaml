@@ -1,0 +1,21 @@
+resources:
+- spinsvc.yaml
+
+
+# Uncomment to deploy the agent as a service
+# bases:
+#   - agent 
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+secretGenerator:
+- name: static-kubeconfigs
+  files:
+  - agent/kubecfgs/kubecfg-dev.yaml
+
+patchesStrategicMerge:
+  # Include plugin configuration
+  - agent-plugin/config.yaml
+  # Change plugin version as well the name of your SpinnakerService in this manifest
+  - agent-plugin/clouddriver-plugin.yaml
