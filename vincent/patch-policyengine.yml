@@ -1,0 +1,58 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      clouddriver:
+        spinnaker:
+          extensibility:
+            plugins:
+              Armory.PolicyEngine:
+                enabled: false
+                version: 0.0.16
+            repositories:
+              armory:
+                url: https://raw.githubusercontent.com/armory-plugins/policy-engine-releases/master/repositories.json
+        armory.policyEngine:
+          failOpen: true
+          opa.baseUrl: http://opa.opa:8181/v1/data
+      front50:
+        spinnaker:
+          extensibility:
+            plugins:
+              Armory.PolicyEngine:
+                enabled: true
+                version: 0.0.16
+                extensions:
+                  armory.policyEngine:
+                    enabled: true
+                    config:
+                      opa: 
+                        baseUrl: http://opa.opa:8181/v1/data
+                      failOpen: false
+            repositories:
+              armory:
+                url: https://raw.githubusercontent.com/armory-plugins/policy-engine-releases/master/repositories.json
+      orca:
+        logging:
+          level:
+            com.netflix.spinnaker.orca: DEBUG
+            io.armory.spinnaker.opa: DEBUG
+        spinnaker:
+          extensibility:
+            plugins:
+              Armory.PolicyEngine:
+                enabled: true
+                version: 0.0.16
+                extensions:
+                  armory.policyEngine:
+                    enabled: true
+                    config:
+                      opa: 
+                        baseUrl: http://opa.opa:8181/v1/data
+                      failOpen: true
+            repositories:
+              armory:
+                url: https://raw.githubusercontent.com/armory-plugins/policy-engine-releases/master/repositories.json

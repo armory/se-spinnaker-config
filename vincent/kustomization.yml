@@ -21,3 +21,4 @@ patchesStrategicMerge:
 - patch-validation.yml
 - patch-kubesvc-plugin.yml  # both patch files required for kubesvc
 - patch-clouddriver-plugin.yml  # both patch files required for kubesvc
+- patch-policyengine.yml
