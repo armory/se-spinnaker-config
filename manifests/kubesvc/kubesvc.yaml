@@ -35,5 +35,9 @@ prometheus:
   enabled: true
   # port: 8008
 
+#env:
+#   HTTP_PROXY: "proxyaddress:proxyport"
+#   HTTPS_PROXY: "proxyaddress:proxyport"
+
 #kubernetes:
 #  noProxy: true
