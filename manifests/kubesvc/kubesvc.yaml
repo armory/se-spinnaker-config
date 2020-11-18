@@ -34,3 +34,6 @@ clouddriver:
 prometheus:
   enabled: true
   # port: 8008
+
+#kubernetes:
+#  noProxy: true
