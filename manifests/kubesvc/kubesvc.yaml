@@ -37,8 +37,9 @@ prometheus:
   enabled: true
   # port: 8008
 
-<<<<<<< HEAD
-=======
+#env:
+#   HTTP_PROXY: "proxyaddress:proxyport"
+#   HTTPS_PROXY: "proxyaddress:proxyport"
+
 #kubernetes:
 #  noProxy: true
->>>>>>> Update kubesvc.yaml
