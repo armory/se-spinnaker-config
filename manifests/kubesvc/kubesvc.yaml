@@ -10,6 +10,8 @@ kubernetes:
 #    kinds: []
 #    omitKinds: []
 
+#  noProxy: true # configures kubernetes traffic to ingore proxy settings
+
 clouddriver:
   grpc: vincent-clouddriver.se.armory.io:443
   insecure: false
@@ -23,9 +25,3 @@ prometheus:
   enabled: true
   # port: 8008
 
-#env:
-#   HTTP_PROXY: "proxyaddress:proxyport"
-#   HTTPS_PROXY: "proxyaddress:proxyport"
-
-#kubernetes:
-#  noProxy: true
