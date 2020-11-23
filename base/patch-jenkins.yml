@@ -14,5 +14,5 @@ spec:
           - name: jenkins-sales
             permissions: {}
             address: https://jenkins.sales.armory.io
-            username: encrypted:s3!b:armory-sales-secrets!f:spinnaker-secrets.yml!r:us-west-2!k:jenkins.username
-            password: encrypted:s3!b:armory-sales-secrets!f:spinnaker-secrets.yml!r:us-west-2!k:jenkins.password
+            username: admin
+            password: encrypted:k8s!n:account-secrets!k:jenkins-password

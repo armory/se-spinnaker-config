@@ -5,26 +5,26 @@ metadata:
 spec:
   spinnakerConfig:
     profiles:
-      clouddriver:
-        spinnaker:
-          extensibility:
-            plugins:
-              Armory.PolicyEngine:
-                enabled: true
-                version: 0.0.14-rc3
-            repositories:
-              armory:
-                url: https://raw.githubusercontent.com/armory-plugins/policy-engine-releases/master/repositories.json
-        armory.policyEngine:
-          failOpen: true
-          opa.baseUrl: http://opa.opa:8181/v1/data
+     # clouddriver:
+      #  spinnaker:
+       #   extensibility:
+        #    plugins:
+         #     Armory.PolicyEngine:
+          #      enabled: true
+           #     version: 0.0.16
+            #repositories:
+             # armory:
+              #  url: https://raw.githubusercontent.com/armory-plugins/policy-engine-releases/master/repositories.json
+        #armory.policyEngine:
+         # failOpen: true
+          #opa.baseUrl: http://opa.opa:8181/v1/data
       front50:
         spinnaker:
           extensibility:
             plugins:
               Armory.PolicyEngine:
                 enabled: true
-                version: 0.0.14-rc3
+                version: 0.0.16
                 extensions:
                   armory.policyEngine:
                     enabled: true
@@ -45,7 +45,7 @@ spec:
             plugins:
               Armory.PolicyEngine:
                 enabled: true
-                version: 0.0.14-rc3
+                version: 0.0.16
                 extensions:
                   armory.policyEngine:
                     enabled: true

@@ -6,13 +6,14 @@ commonAnnotations:
 
 resources:
 - spinnakerservice.yml
-#- ingress.yml ///TODO: revisit later - may just use spec.expose when it supports ingresses
+
+#bases:
+#- agent-service
 
 patchesStrategicMerge:
 - patch-componentsizing.yml # custom resource limits & requests
-- patch-expose.yml
+#- patch-expose.yml
 - patch-gate.yml
-- patch-deck.yml
 - patch-annotations.yml
 - patch-persistentStore.yml # gcs bucket
 - patch-provider-k8s.yml
@@ -25,9 +26,19 @@ patchesStrategicMerge:
 - patch-vault.yml
 - patch-logging.yml # Turn on debug logging
 - patch-canary.yml # Canary google config
+- patch-helm.yml
+- patch-auth.yml
+- patch-echo.yml # Logging to kafka
+- patch-repository.yml
+#- patch-cf.yml
+- patch-http.yml
+- patch-redis.yml
+- patch-mysql.yml
+- patch-armory-agent.yml
+- patch-clouddriver-plugin.yml
 #- patch-files.yml
 #- patch-slack.yml
 #- patch-jenkins.yml
-#- patch-security.yml # Maybe not needed now when using ingress
+- patch-security.yml #
 #- patch-opa.yml # old setup
 

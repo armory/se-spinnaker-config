@@ -9,4 +9,4 @@ spec:
           kubernetes:
             serviceAnnotations:
               cloud.google.com/neg: '{"ingress": true}'
-
+              #cloud.google.com/backend-config: '{"default": "https"}'

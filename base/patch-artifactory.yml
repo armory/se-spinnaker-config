@@ -1,0 +1,19 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    config:
+      artifacts:
+        artifactory:
+          enabled: true
+          searches:
+          - name: spring-artifactory
+            permissions: {}
+            baseUrl: https://my.repo.example.com
+            repo: my-example-repo
+            groupId: com.example.mygroup
+            repoType: helm
+            username: aaron.torgerson@armory.io
+            password: encrypted:k8s!n:account-secrets!k:artifactory-password

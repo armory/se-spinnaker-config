@@ -7,6 +7,11 @@ spec:
     config:
       security:
         apiSecurity:
-          overrideBaseUrl: http://gate.spin.armory.garreeoke.io
+          ssl:
+            enabled: false
+          overrideBaseUrl: https://spin.armory.garreeoke.io/api
+          corsAccessPattern: https://spin.armory.garreeoke.io
         uiSecurity:
-          overrideBaseUrl: http://deck.spin.armory.garreeoke.io
+          ssl:
+            enabled: false
+          overrideBaseUrl: https://spin.armory.garreeoke.io

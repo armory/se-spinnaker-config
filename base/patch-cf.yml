@@ -8,14 +8,17 @@ spec:
     # spec.spinnakerConfig.config - This section contains the contents of a deployment found in a halconfig .deploymentConfigurations[0]
     config:
       providers:
-        dockerRegistry:
+        cloudfoundry:
           enabled: true
           accounts:
-          - name: garreeoke-armory-docker
-            address:  https://index.docker.io
-            username: garreeokearmory
-            password: encrypted:k8s!n:account-secrets!k:docker-password
+          - name: cf-test
+            api: api.sys.sanmarcos.cf-app.com
+            appsManagerUri: https://apps.sys.sanmarcos.cf-app.com
+            environment: devl
+            #metricsUrl:
             providerVersion: V1
-            repositories:
-            - garreeoke/acmenode
-          primaryAccount: garreeoke-armory-docker
+            password: encrypted:k8s!n:account-secrets!k:pcf-password
+            #requiredGroupMembership:
+            skipSslValidation: true
+            user: admin
+          primaryAccount: cf-test

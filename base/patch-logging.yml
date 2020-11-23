@@ -13,3 +13,10 @@ spec:
         logging:
           level:
             io.armory.spinnaker.opa: DEBUG
+      clouddriver:
+        logging:
+          level:
+            com.netflix.spinnaker.clouddriver.kubernetes: DEBUG
+            com.netflix.spinnaker.clouddriver.kubernetes.op.job: DEBUG
+            #com.netflix.spinnaker.clouddriver.kubernetes.caching.agent.KubernetesV2CachingAgent: DEBUG
+            com.netflix.spinnaker.clouddriver.cache.LoggingInstrumentation: DEBUG

@@ -11,7 +11,23 @@ spec:
         kubernetes:
           enabled: true
           accounts:
-            - name: gke-aaront-1
-              kubeconfigFile: encryptedFile:k8s!n:spin-secrets!k:kubeconfig-gke
-              onlySpinnakerManaged: false
-          primaryAccount: gke-aaront-1
+            - name: gke-aaron-personal
+              kubeconfigFile: encryptedFile:k8s!n:spin-secrets!k:kubeconfig-aaron-armory1
+              #serviceAccount: true
+              onlySpinnakerManaged: true
+              providerVersion: V2
+              liveManifestCalls: true
+            - name: gke-aaront
+              kubeconfigFile: encryptedFile:k8s!n:spin-secrets!k:kubeconfig-aaront1
+              onlySpinnakerManaged: true
+              liveManifestCalls: true
+              providerVersion: V2
+              #serviceAccount: true
+              #namespaces:
+              #- default
+              #- acme-air
+          primaryAccount: gke-aaront
+    #service-settings:
+    #  clouddriver:
+    #    kubernetes:
+    #      serviceAccountName: spinnaker-dev-sa

@@ -1,0 +1,19 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      clouddriver:
+        # See https://docs.armory.io/docs/installation/armory-agent/agent-options/
+        kubesvc:
+          cluster: redis
+          runtime:
+            defaults:
+              customResources:
+              - kubernetesKind: "TanzuKubernetesCluster.run.tanzu.vmware.com"
+                versioned: false
+                spinnakerKind: serverGroups
+
+               

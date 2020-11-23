@@ -1,10 +1,11 @@
 apiVersion: spinnaker.armory.io/v1alpha2
 kind: SpinnakerService
 metadata:
-  name: spinnaker
+  name: spinnaker  # name doesn't matter since this is a patch
 spec:
   spinnakerConfig:
     service-settings:
       redis:
+        #overrideBaseUrl: redis://10.144.148.179:6379
         overrideBaseUrl: redis://spin-redis.spinnaker:6379
-        skipLifeCycleManagement: true
+        skipLifeCycleManagement: false

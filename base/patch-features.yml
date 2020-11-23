@@ -11,4 +11,29 @@ spec:
           window.spinnakerSettings.feature.artifactsRewrite = true;
           window.spinnakerSettings.authEnabled = true;
           window.spinnakerSettings.feature.terraform = true;
-
+      orca:
+        webhook:
+          preconfigured:
+          - label: "Jira: Add Comment"
+            type: addJiraComment
+            enabled: true
+            description: Custome stage to add comment to Jira issue
+            method: POST
+            url: "https://garreeoke.atlassian.net/rest/api/latest/issue/${parameterValues['taskid']}/comment"
+            customHeaders:
+              Authorization: Basic Z2FycmVlc2V0dEBnbWFpbC5jb206TlloZVNRdDJqSnhWS1RzNHQxVnk3ODFB 
+              Content-type: application/json
+            payload: |-
+              {
+                "body": "${parameterValues['message']}"
+              }
+            parameters:
+            - label: Task ID
+              name: taskid
+              description: Task
+              type: string
+            - label: Message
+              name: message
+              description: message
+              type: string
+            

@@ -11,7 +11,7 @@ spec:
           accounts:
           - name: garreeoke
             username: garreeokearmory
-            token: encrypted:vault!e:secret!p:spinnaker/github!k:token
+            token: encrypted:k8s!n:account-secrets!k:github-token
     profiles:
       clouddriver:
         artifacts:
@@ -19,4 +19,4 @@ spec:
             enabled: true
             accounts:
             - name: gitrepo
-              token: encrypted:vault!e:secret!p:spinnaker/github!k:token
+              token: encrypted:k8s!n:account-secrets!k:github-token

@@ -10,7 +10,7 @@ spec:
           enabled: true
           git:
             enabled: true
-            accessToken: encrypted:vault!e:secret!p:spinnaker/github!k:token
+            accessToken: encrypted:k8s!n:account-secrets!k:github-token
             username: garreeoke
     service-settings:
       terraformer:

@@ -12,12 +12,12 @@ spec:
           oauth2:
             enabled: true
             client:
-              clientId: encrypted:s3!b:armory-sales-secrets!f:spinnaker-secrets.yml!r:us-west-2!k:vincentoauth2.clientId
-              clientSecret: encrypted:s3!b:armory-sales-secrets!f:spinnaker-secrets.yml!r:us-west-2!k:vincentoauth2.clientSecret
+              clientId: encrypted:k8s!n:account-secrets!k:github-client-id
+              clientSecret: encrypted:k8s!n:account-secrets!k:github-client-secret
               accessTokenUri: https://github.com/login/oauth/access_token
               userAuthorizationUri: https://github.com/login/oauth/authorize
               scope: read:org,user:email
-              preEstablishedRedirectUri: https://vincent.se.armory.io/api/v1/login
+              preEstablishedRedirectUri: https://spin.armory.garreeoke.io/api/login
               useCurrentUri: false
             resource:
               userInfoUri: https://api.github.com/user
@@ -27,3 +27,12 @@ spec:
               lastName: name
               username: login
             provider: GITHUB
+        authz:
+          enabled: false
+          groupMembership: 
+            service: GITHUB
+            github:
+              roleProviderType: GITHUB
+              accessToken: 377c688e7366f7f261d2ef777852b2a3af520628
+              organization: aaront-spin
+              baseUrl: https://api.github.com

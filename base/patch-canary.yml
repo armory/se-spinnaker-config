@@ -12,27 +12,48 @@ spec:
         enabled: true
         serviceIntegrations:
           - name: aws
-            enabled: false
-          - name: google
             enabled: true
+            s3Enabled: true
             accounts:
-              - name: google1
-                project: aaront1
-                jsonPath: encryptedFile:k8s!n:spin-secrets!k:aaront-1-svc.json
-                bucket: garreeoke-bucket1
-                #bucketLocation: us-west-1a
-                rootFolder: kayenta
-                supportedTypes:
-                  - METRICS_STORE
-                  - CONFIGURATION_STORE
-                  - OBJECT_STORE
-            gcsEnabled: false
-            stackdriverEnabled: false
+            - name: aws1
+              bucket: aaront-kayenta
+              region: us-west-2
+              rootFolder: kayenta
+              accessKeyId: encrypted:k8s!n:account-secrets!k:aws-access-key-id
+              secretAccessKey: encrypted:k8s!n:account-secrets!k:aws-secret-access-key
+              supportedTypes:
+              - CONFIGURATION_STORE
+              - OBJECT_STORE
+          - name: newrelic
+            enabled: true
+            accounts: 
+            - name: newrelic1
+              endpoint:
+                baseUrl: https://insights-api.newrelic.com
+              apiKey: encrypted:k8s!n:account-secrets!k:new-relic-api-key
+              #defaultScopeKey: default_scope
+              #defaultLocationKey: default_location
+              applicationKey: 2893088 # account id
+              supportedTypes:
+              - METRICS_STORE
+          - name: prometheus
+            enabled: true
+            accounts: 
+            - name: prom-prod
+              endpoint:
+                baseUrl: http://prometheus.armory.garreeoke.io
+              supportedTypes:
+              - METRICS_STORE
+            - name: prom-stage
+              endpoint:
+                baseUrl: http://35.247.88.181:9090
+              supportedTypes:
+              - METRICS_STORE
         reduxLoggerEnabled: true
-        defaultMetricsAccount: google1
-        defaultStorageAccount: google1
+        defaultMetricsAccount: prom-prod
+        defaultStorageAccount: aws1
         defaultJudge: NetflixACAJudge-v1.0
-        defaultMetricsStore: stackdriver
+        defaultMetricsStore: prom-prod
         stagesEnabled: true
         templatesEnabled: true
         showAllConfigsEnabled: true

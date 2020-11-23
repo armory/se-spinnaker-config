@@ -9,8 +9,8 @@ spec:
         customSizing:
           clouddriver:
             limits:
-              cpu: 2
-              memory: 4Gi
+              cpu: 2000m
+              memory: 2Gi
             requests:
               cpu: 500m
               memory: 1Gi
@@ -51,10 +51,10 @@ spec:
               memory: 512Mi
           gate:
             limits:
-              cpu: 600m
+              cpu: 500m
               memory: 1Gi
             requests:
-              cpu: 300m
+              cpu: 100m
               memory: 512Mi
           kayenta:
             limits:
@@ -75,7 +75,7 @@ spec:
               cpu: 1
               memory: 1Gi
             requests:
-              cpu: 750m
+              cpu: 250m
               memory: 512Mi
           rosco:
             limits:

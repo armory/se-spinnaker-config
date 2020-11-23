@@ -8,7 +8,7 @@ spec:
       armory:
         secrets:
           vault:
-            enabled: true
+            enabled: false
             authMethod: KUBERNETES
             url: http://vault.vault:8200
             role: spinnaker

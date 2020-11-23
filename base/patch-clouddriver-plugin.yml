@@ -1,0 +1,51 @@
+# Installs Armory Agent plugin 0.4.5 to Clouddriver in Armory
+# Change "spinnaker" name below if you need to
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      clouddriver:
+        spinnaker:
+          extensibility:
+            pluginsRootPath: /opt/clouddriver/lib/plugins
+            plugins:
+              Armory.Kubesvc:
+                enabled: true
+  kustomize:
+    clouddriver:
+      service:
+        patchesStrategicMerge:
+          - |
+            metadata:
+              annotations:
+                cloud.google.com/app-protocols: '{"grpc":"HTTP2"}'
+                cloud.google.com/neg: '{"ingress": true}'
+            spec:
+              ports:
+                - name: http
+                  port: 7002
+                - name: grpc
+                  port: 9091
+      deployment:
+        patchesStrategicMerge:
+          - |
+            spec:
+              template:
+                spec:
+                  initContainers:
+                  - name: kubesvc-plugin
+                    image: docker.io/armory/kubesvc-plugin:0.5.0-rc.15
+                    volumeMounts:
+                      - mountPath: /opt/plugin/target
+                        name: kubesvc-plugin-vol
+                  containers:
+                  - name: clouddriver
+                    volumeMounts:
+                      - mountPath: /opt/clouddriver/lib/plugins
+                        name: kubesvc-plugin-vol
+                  volumes:
+                  - name: kubesvc-plugin-vol
+                    emptyDir: {}

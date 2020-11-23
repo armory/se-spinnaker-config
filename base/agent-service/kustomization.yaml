@@ -1,0 +1,6 @@
+# Use this kustomization to install Agent plugin to clouddriver
+resources:
+  # Regular Clouddriver installation
+  - clouddriver-grpc-service.yaml
+  # Sharded installation with specialized rw instances
+#  - clouddriver-ha-grpc-service.yaml

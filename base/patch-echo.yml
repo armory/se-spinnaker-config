@@ -1,0 +1,28 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+ name: spinnaker
+spec:
+ spinnakerConfig:
+   profiles:
+     echo:
+       rest:
+         enabled: true
+         endpoints:
+           - wrap: true
+             flatten: false
+             url: https://us-central1-aaront1.cloudfunctions.net/spinnakerAuditLog
+             username: spinlogs
+             password: Armory2020
+             eventName: spinnaker_events
+         #- wrap: true
+           #flatten: true
+         #  url: "http://35.188.80.201:8082/topics/aaront-spinnaker"
+          # headers:
+           #  Content-Type: "application/vnd.kafka.json.v2+json"
+           #insecure: true
+           #records: spinnaker_events
+           #template: '{ "records": [{"key": "spinnaker_event","value": "{{event}}"}]}'
+           #records: '{["value": {{event}} ]}'
+           #fieldName: records
+           

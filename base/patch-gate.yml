@@ -8,21 +8,27 @@ spec:
       gate:
         security:
           basicform:
-            enabled: true
+            enabled: false
           user:
             name: aaron
             password: aaron1234567
         server:
+          servlet:
+            context-path: /api
           tomcat:
             protocolHeader: X-Forwarded-Proto
             remoteIpHeader: X-Forwarded-For
             internalProxies: .*
             httpServerPort: X-Forwarded-Port
+        redis:
+          configuration:
+            secure: true
     service-settings:
       gate:
-        healthEndpoint: /health
-        kubernetes:
-          serviceAnnotations:
-            cloud.google.com/neg: '{"ingress": true}'
-          podAnnotations:
-            aaron-test: "true"
+        healthEndpoint: /api/health
+        #kubernetes:
+          #serviceAnnotations:
+           # cloud.google.com/neg: '{"ingress": true}'
+            #cloud.google.com/backend-config: '{"default": "https-health"}'
+          #podAnnotations:
+           # aaron-test: "true"
