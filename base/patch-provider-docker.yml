@@ -26,7 +26,5 @@ spec:
             sortTagsByDate: false
             trackDigests: false
             insecureRegistry: false
-            repositories:
-            - away168/mysite
-            - away168/rps
+            repositories: []
           primaryAccount: docker-registry-away168
