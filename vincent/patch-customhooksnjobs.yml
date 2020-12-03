@@ -192,7 +192,13 @@ spec:
                                 value: encrypted:k8s!n:stackhawk!k:apikey
                               - name: REPO_DIR
                                 value: /home/zap/workdir
-                            image: 'zconger/hawkscan:latest'
+                            command:
+                              - /bin/bash
+                              - '-c'
+                              - |
+                                git clone $REPO_URL $REPO_DIR
+                                shawk
+                            image: 'stackhawk/hawkscan:latest'
                             name: hawkscan
                         restartPolicy: Never
                     ttlSecondsAfterFinished: 600
