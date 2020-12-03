@@ -7,11 +7,11 @@ metadata:
     app: "spin"
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    # cert-manager.io/cluster-issuer: se-ca-issuer
+    # cert-manager.io/cluster-issuer: letsencrypt-prod
     # nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
     # nginx.ingress.kuberentes.io/proxy-buffer-size: "64k"  #debugging
-    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-    nginx.ingress.kubernetes.io/secure-backends: "true"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"  #<-- MTLS
+    nginx.ingress.kubernetes.io/secure-backends: "true"  #<-- MTLS
 spec:
   rules:
   - host: vincent-clouddriver.se.armory.io

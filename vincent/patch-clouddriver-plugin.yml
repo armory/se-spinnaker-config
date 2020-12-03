@@ -31,7 +31,7 @@ spec:
                 spec:
                   initContainers:
                   - name: kubesvc-plugin
-                    image: docker.io/armory/kubesvc-plugin:0.5.0-rc.15
+                    image: docker.io/armory/kubesvc-plugin:0.5.5
                     volumeMounts:
                       - mountPath: /opt/plugin/target
                         name: kubesvc-plugin-vol

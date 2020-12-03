@@ -15,7 +15,7 @@ spec:
                 certificateChain: file:///opt/clouddriver/cert/tls.crt    #list of crts
                 trustCertCollection: file:///opt/clouddriver/cert/tls.crt #cacert
                 privateKey: file:///opt/clouddriver/cert/tls.key
-                clientAuth: REQUIRE
+                clientAuth: OPTIONAL #REQUIRE
 #          eventsCleanupFrequencySeconds: 7200
 #          localShortCircuit: false
 #          runtime:
