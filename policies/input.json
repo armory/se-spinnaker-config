@@ -1,82 +1,672 @@
 {
-  "description": "This pipeline is enforced by two policies: \n(A) MJ before Production (by namespace)\n(B) Image must be from a trusted registry",
-  "keepWaitingPipelines": false,
-  "lastModifiedBy": "chadtripod",
-  "limitConcurrent": true,
-  "stages": [
-    {
-      "account": "dev-us-west-2",
-      "cloudProvider": "kubernetes",
-      "manifests": [
+  "stage": {
+    "id": "01EPDDZHE2ESQRGFCJV5N6VFNE",
+    "refId": "1",
+    "type": "deployManifest",
+    "name": "Deploy LB",
+    "startTime": 1604621158038,
+    "status": "RUNNING",
+    "context": {
+      "deploy.account.name": "dev-us-west-2",
+      "outputs.createdArtifacts": [
         {
-          "apiVersion": "apps/v1",
-          "kind": "Deployment",
+          "customKind": false,
+          "reference": "policyapp-service",
           "metadata": {
-            "labels": {
-              "app": "nginx"
-            },
-            "name": "helloworld",
-            "namespace": "prod"
+            "account": "dev-us-west-2"
           },
-          "spec": {
-            "replicas": 1,
-            "selector": {
-              "matchLabels": {
-                "app": "nginx"
-              }
-            },
-            "template": {
-              "metadata": {
-                "labels": {
-                  "app": "nginx"
-                }
-              },
-              "spec": {
-                "containers": [
-                  {
-                    "image": "justinrlee:latest",
-                    "name": "nginx",
-                    "ports": [
-                      {
-                        "containerPort": 80
-                      }
-                    ]
-                  }
-                ]
-              }
-            }
-          }
+          "name": "policyapp-service",
+          "location": "dev",
+          "type": "kubernetes/service"
+        }
+      ],
+      "deployedManifests": [],
+      "source": "text",
+      "processed.scopedManifests": [
+        {
+          "name": "service policyapp-service",
+          "location": "dev",
+          "account": "dev-us-west-2"
+        }
+      ],
+      "stableManifests": [
+        {
+          "manifestName": "service policyapp-service",
+          "location": "dev"
+        }
+      ],
+      "cloudProvider": "kubernetes",
+      "kato.result.expected": false,
+      "trafficManagement": {
+        "options": {
+          "enableTraffic": false,
+          "services": []
+        },
+        "enabled": false
+      },
+      "deploy.server.groups": {},
+      "kato.last.task.id": {
+        "id": "01EPDDZQCNV77JQFCC434Z2QVP"
+      },
+      "requiredArtifacts": [],
+      "artifacts": [
+        {
+          "customKind": false,
+          "reference": "policyapp-service",
+          "metadata": {
+            "account": "dev-us-west-2"
+          },
+          "name": "policyapp-service",
+          "location": "dev",
+          "type": "kubernetes/service"
+        }
+      ],
+      "kato.task.terminalRetryCount": 0,
+      "refreshed.scopedManifests": [
+        {
+          "name": "service policyapp-service",
+          "location": "dev",
+          "account": "dev-us-west-2"
         }
       ],
       "moniker": {
         "app": "policyapp"
       },
-      "name": "Deploy (Manifest)",
-      "namespaceOverride": "",
-      "refId": "1",
-      "requisiteStageRefIds": [
-        "2"
-      ],
-      "skipExpressionEvaluation": false,
-      "source": "text",
-      "trafficManagement": {
-        "enabled": false,
-        "options": {
-          "enableTraffic": false
-        }
+      "kato.task.firstNotFoundRetry": -1,
+      "outputs.manifestNamesByNamespace": {
+        "dev": [
+          "service policyapp-service"
+        ]
       },
-      "type": "deployManifest"
+      "optionalArtifacts": [],
+      "manifestNamesByNamespaceToRefresh": {},
+      "outputs.boundArtifacts": [],
+      "manifests": [
+        {
+          "metadata": {
+            "name": "policyapp-service",
+            "namespace": "dev"
+          },
+          "apiVersion": "v1",
+          "kind": "Service",
+          "spec": {
+            "selector": {
+              "app": "policyapp"
+            },
+            "ports": [
+              {
+                "protocol": "TCP",
+                "port": 22,
+                "targetPort": 22
+              }
+            ],
+            "type": "ClusterIP"
+          }
+        }
+      ],
+      "messages": [],
+      "failedManifests": [],
+      "kato.tasks": [
+        {
+          "resultObjects": [
+            {
+              "createdArtifacts": [
+                {
+                  "customKind": false,
+                  "reference": "policyapp-service",
+                  "metadata": {
+                    "account": "dev-us-west-2"
+                  },
+                  "name": "policyapp-service",
+                  "location": "dev",
+                  "type": "kubernetes/service"
+                }
+              ],
+              "manifests": [
+                {
+                  "metadata": {
+                    "uid": "bb68eeb2-af67-4665-a373-5c4872ba0fb0",
+                    "resourceVersion": "312263799",
+                    "creationTimestamp": "2020-11-06T00:05:58Z",
+                    "name": "policyapp-service",
+                    "namespace": "dev",
+                    "annotations": {
+                      "artifact.spinnaker.io/name": "policyapp-service",
+                      "artifact.spinnaker.io/location": "dev",
+                      "artifact.spinnaker.io/type": "kubernetes/service",
+                      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"Service\",\"metadata\":{\"annotations\":{\"artifact.spinnaker.io/location\":\"dev\",\"artifact.spinnaker.io/name\":\"policyapp-service\",\"artifact.spinnaker.io/type\":\"kubernetes/service\",\"moniker.spinnaker.io/application\":\"policyapp\",\"moniker.spinnaker.io/cluster\":\"service policyapp-service\"},\"labels\":{\"app.kubernetes.io/managed-by\":\"spinnaker\",\"app.kubernetes.io/name\":\"policyapp\"},\"name\":\"policyapp-service\",\"namespace\":\"dev\"},\"spec\":{\"ports\":[{\"port\":22,\"protocol\":\"TCP\",\"targetPort\":22}],\"selector\":{\"app\":\"policyapp\"},\"type\":\"ClusterIP\"}}\n",
+                      "moniker.spinnaker.io/cluster": "service policyapp-service",
+                      "moniker.spinnaker.io/application": "policyapp"
+                    },
+                    "labels": {
+                      "app.kubernetes.io/managed-by": "spinnaker",
+                      "app.kubernetes.io/name": "policyapp"
+                    },
+                    "selfLink": "/api/v1/namespaces/dev/services/policyapp-service"
+                  },
+                  "apiVersion": "v1",
+                  "kind": "Service",
+                  "spec": {
+                    "sessionAffinity": "None",
+                    "selector": {
+                      "app": "policyapp"
+                    },
+                    "ports": [
+                      {
+                        "protocol": "TCP",
+                        "port": 22.0,
+                        "targetPort": 22.0
+                      }
+                    ],
+                    "type": "ClusterIP",
+                    "clusterIP": "172.20.148.123"
+                  },
+                  "status": {
+                    "loadBalancer": {}
+                  }
+                }
+              ],
+              "manifestNamesByNamespace": {
+                "dev": [
+                  "service policyapp-service"
+                ]
+              },
+              "boundArtifacts": []
+            }
+          ],
+          "id": "01EPDDZHTTDHNG8N0PWAG74KSA",
+          "history": [
+            {
+              "phase": "ORCHESTRATION",
+              "status": "Initializing Orchestration Task"
+            },
+            {
+              "phase": "ORCHESTRATION",
+              "status": "Processing op: KubernetesDeployManifestOperation"
+            },
+            {
+              "phase": "DEPLOY_KUBERNETES_MANIFEST",
+              "status": "Beginning deployment of manifest..."
+            },
+            {
+              "phase": "DEPLOY_KUBERNETES_MANIFEST",
+              "status": "Finding deployer for service..."
+            },
+            {
+              "phase": "DEPLOY_KUBERNETES_MANIFEST",
+              "status": "Swapping out artifacts in service policyapp-service from context..."
+            },
+            {
+              "phase": "DEPLOY_KUBERNETES_MANIFEST",
+              "status": "Checking if all requested artifacts were bound..."
+            },
+            {
+              "phase": "DEPLOY_KUBERNETES_MANIFEST",
+              "status": "Sorting manifests by priority..."
+            },
+            {
+              "phase": "DEPLOY_KUBERNETES_MANIFEST",
+              "status": "Deploy order is: service policyapp-service"
+            },
+            {
+              "phase": "DEPLOY_KUBERNETES_MANIFEST",
+              "status": "Finding deployer for service..."
+            },
+            {
+              "phase": "DEPLOY_KUBERNETES_MANIFEST",
+              "status": "Annotating manifest service policyapp-service with artifact, relationships & moniker..."
+            },
+            {
+              "phase": "DEPLOY_KUBERNETES_MANIFEST",
+              "status": "Swapping out artifacts in service policyapp-service from other deployments..."
+            },
+            {
+              "phase": "DEPLOY_KUBERNETES_MANIFEST",
+              "status": "Submitting manifest service policyapp-service to kubernetes master..."
+            },
+            {
+              "phase": "DEPLOY_KUBERNETES_MANIFEST",
+              "status": "Deploy manifest task completed successfully."
+            },
+            {
+              "phase": "ORCHESTRATION",
+              "status": "Orchestration completed."
+            },
+            {
+              "phase": "ORCHESTRATION",
+              "status": "Orchestration completed."
+            }
+          ],
+          "status": {
+            "retryable": false,
+            "completed": true,
+            "failed": false
+          }
+        },
+        {
+          "resultObjects": [
+            {
+              "createdArtifacts": [],
+              "manifestNamesByNamespace": {},
+              "boundArtifacts": []
+            }
+          ],
+          "id": "01EPDDZQCNV77JQFCC434Z2QVP",
+          "history": [
+            {
+              "phase": "ORCHESTRATION",
+              "status": "Initializing Orchestration Task"
+            },
+            {
+              "phase": "ORCHESTRATION",
+              "status": "Processing op: KubernetesCleanupArtifactsOperation"
+            },
+            {
+              "phase": "ORCHESTRATION",
+              "status": "Orchestration completed."
+            },
+            {
+              "phase": "ORCHESTRATION",
+              "status": "Orchestration completed."
+            }
+          ],
+          "status": {
+            "retryable": false,
+            "completed": true,
+            "failed": false
+          }
+        }
+      ],
+      "outputs.manifests": [
+        {
+          "metadata": {
+            "uid": "bb68eeb2-af67-4665-a373-5c4872ba0fb0",
+            "resourceVersion": "312263799",
+            "creationTimestamp": "2020-11-06T00:05:58Z",
+            "name": "policyapp-service",
+            "namespace": "dev",
+            "annotations": {
+              "artifact.spinnaker.io/name": "policyapp-service",
+              "artifact.spinnaker.io/location": "dev",
+              "artifact.spinnaker.io/type": "kubernetes/service",
+              "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"Service\",\"metadata\":{\"annotations\":{\"artifact.spinnaker.io/location\":\"dev\",\"artifact.spinnaker.io/name\":\"policyapp-service\",\"artifact.spinnaker.io/type\":\"kubernetes/service\",\"moniker.spinnaker.io/application\":\"policyapp\",\"moniker.spinnaker.io/cluster\":\"service policyapp-service\"},\"labels\":{\"app.kubernetes.io/managed-by\":\"spinnaker\",\"app.kubernetes.io/name\":\"policyapp\"},\"name\":\"policyapp-service\",\"namespace\":\"dev\"},\"spec\":{\"ports\":[{\"port\":22,\"protocol\":\"TCP\",\"targetPort\":22}],\"selector\":{\"app\":\"policyapp\"},\"type\":\"ClusterIP\"}}\n",
+              "moniker.spinnaker.io/cluster": "service policyapp-service",
+              "moniker.spinnaker.io/application": "policyapp"
+            },
+            "labels": {
+              "app.kubernetes.io/managed-by": "spinnaker",
+              "app.kubernetes.io/name": "policyapp"
+            },
+            "selfLink": "/api/v1/namespaces/dev/services/policyapp-service"
+          },
+          "apiVersion": "v1",
+          "kind": "Service",
+          "spec": {
+            "sessionAffinity": "None",
+            "selector": {
+              "app": "policyapp"
+            },
+            "ports": [
+              {
+                "protocol": "TCP",
+                "port": 22.0,
+                "targetPort": 22.0
+              }
+            ],
+            "type": "ClusterIP",
+            "clusterIP": "172.20.148.123"
+          },
+          "status": {
+            "loadBalancer": {}
+          }
+        }
+      ],
+      "kato.task.notFoundRetryCount": 0,
+      "shouldRefreshManifestNamesByNamespaceToRefresh": false,
+      "account": "dev-us-west-2",
+      "skipExpressionEvaluation": false,
+      "errors": [],
+      "kato.task.lastStatus": "SUCCEEDED"
     },
-    {
-      "failPipeline": true,
-      "judgmentInputs": [],
-      "name": "Manual Judgment",
+    "outputs": {
+      "manifests": [
+        {
+          "metadata": {
+            "name": "policyapp-service",
+            "namespace": "dev"
+          },
+          "apiVersion": "v1",
+          "kind": "Service",
+          "spec": {
+            "selector": {
+              "app": "policyapp"
+            },
+            "ports": [
+              {
+                "protocol": "TCP",
+                "port": 22,
+                "targetPort": 22
+              }
+            ],
+            "type": "ClusterIP"
+          }
+        }
+      ],
+      "requiredArtifacts": [],
+      "optionalArtifacts": [],
+      "outputs.createdArtifacts": [
+        {
+          "type": "kubernetes/service",
+          "customKind": false,
+          "name": "policyapp-service",
+          "location": "dev",
+          "reference": "policyapp-service",
+          "metadata": {
+            "account": "dev-us-west-2"
+          }
+        }
+      ],
+      "outputs.manifestNamesByNamespace": {
+        "dev": [
+          "service policyapp-service"
+        ]
+      },
+      "manifestNamesByNamespaceToRefresh": {},
+      "outputs.boundArtifacts": [],
+      "outputs.manifests": [
+        {
+          "metadata": {
+            "uid": "bb68eeb2-af67-4665-a373-5c4872ba0fb0",
+            "resourceVersion": "312263799",
+            "creationTimestamp": "2020-11-06T00:05:58Z",
+            "name": "policyapp-service",
+            "namespace": "dev",
+            "annotations": {
+              "artifact.spinnaker.io/name": "policyapp-service",
+              "artifact.spinnaker.io/location": "dev",
+              "artifact.spinnaker.io/type": "kubernetes/service",
+              "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"Service\",\"metadata\":{\"annotations\":{\"artifact.spinnaker.io/location\":\"dev\",\"artifact.spinnaker.io/name\":\"policyapp-service\",\"artifact.spinnaker.io/type\":\"kubernetes/service\",\"moniker.spinnaker.io/application\":\"policyapp\",\"moniker.spinnaker.io/cluster\":\"service policyapp-service\"},\"labels\":{\"app.kubernetes.io/managed-by\":\"spinnaker\",\"app.kubernetes.io/name\":\"policyapp\"},\"name\":\"policyapp-service\",\"namespace\":\"dev\"},\"spec\":{\"ports\":[{\"port\":22,\"protocol\":\"TCP\",\"targetPort\":22}],\"selector\":{\"app\":\"policyapp\"},\"type\":\"ClusterIP\"}}\n",
+              "moniker.spinnaker.io/cluster": "service policyapp-service",
+              "moniker.spinnaker.io/application": "policyapp"
+            },
+            "labels": {
+              "app.kubernetes.io/managed-by": "spinnaker",
+              "app.kubernetes.io/name": "policyapp"
+            },
+            "selfLink": "/api/v1/namespaces/dev/services/policyapp-service"
+          },
+          "apiVersion": "v1",
+          "kind": "Service",
+          "spec": {
+            "sessionAffinity": "None",
+            "selector": {
+              "app": "policyapp"
+            },
+            "ports": [
+              {
+                "protocol": "TCP",
+                "port": 22.0,
+                "targetPort": 22.0
+              }
+            ],
+            "type": "ClusterIP",
+            "clusterIP": "172.20.148.123"
+          },
+          "status": {
+            "loadBalancer": {}
+          }
+        }
+      ],
+      "shouldRefreshManifestNamesByNamespaceToRefresh": true,
+      "artifacts": [
+        {
+          "type": "kubernetes/service",
+          "customKind": false,
+          "name": "policyapp-service",
+          "location": "dev",
+          "reference": "policyapp-service",
+          "metadata": {
+            "account": "dev-us-west-2"
+          }
+        }
+      ]
+    },
+    "tasks": [
+      {
+        "id": "1",
+        "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.manifest.ResolveDeploySourceManifestTask",
+        "name": "resolveDeploySourceManifest",
+        "startTime": 1604621158088,
+        "endTime": 1604621158146,
+        "status": "SUCCEEDED",
+        "stageStart": true,
+        "stageEnd": false,
+        "loopStart": false,
+        "loopEnd": false
+      },
+      {
+        "id": "2",
+        "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.manifest.DeployManifestTask",
+        "name": "deployManifest",
+        "startTime": 1604621158153,
+        "endTime": 1604621158263,
+        "status": "SUCCEEDED",
+        "stageStart": false,
+        "stageEnd": false,
+        "loopStart": false,
+        "loopEnd": false
+      },
+      {
+        "id": "3",
+        "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.MonitorKatoTask",
+        "name": "monitorDeploy",
+        "startTime": 1604621158270,
+        "endTime": 1604621163421,
+        "status": "SUCCEEDED",
+        "stageStart": false,
+        "stageEnd": false,
+        "loopStart": false,
+        "loopEnd": false
+      },
+      {
+        "id": "4",
+        "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.manifest.PromoteManifestKatoOutputsTask",
+        "name": "promoteOutputs",
+        "startTime": 1604621163433,
+        "endTime": 1604621163546,
+        "status": "SUCCEEDED",
+        "stageStart": false,
+        "stageEnd": false,
+        "loopStart": false,
+        "loopEnd": false
+      },
+      {
+        "id": "5",
+        "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.manifest.ManifestForceCacheRefreshTask",
+        "name": "forceCacheRefresh",
+        "startTime": 1604621163553,
+        "endTime": 1604621163663,
+        "status": "SUCCEEDED",
+        "stageStart": false,
+        "stageEnd": false,
+        "loopStart": false,
+        "loopEnd": false
+      },
+      {
+        "id": "6",
+        "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.manifest.WaitForManifestStableTask",
+        "name": "waitForManifestToStabilize",
+        "startTime": 1604621163669,
+        "endTime": 1604621163835,
+        "status": "SUCCEEDED",
+        "stageStart": false,
+        "stageEnd": false,
+        "loopStart": false,
+        "loopEnd": false
+      },
+      {
+        "id": "7",
+        "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.artifacts.CleanupArtifactsTask",
+        "name": "cleanupArtifacts",
+        "startTime": 1604621163845,
+        "endTime": 1604621163954,
+        "status": "SUCCEEDED",
+        "stageStart": false,
+        "stageEnd": false,
+        "loopStart": false,
+        "loopEnd": false
+      },
+      {
+        "id": "8",
+        "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.MonitorKatoTask",
+        "name": "monitorCleanup",
+        "startTime": 1604621164009,
+        "endTime": 1604621164125,
+        "status": "SUCCEEDED",
+        "stageStart": false,
+        "stageEnd": false,
+        "loopStart": false,
+        "loopEnd": false
+      },
+      {
+        "id": "9",
+        "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.manifest.PromoteManifestKatoOutputsTask",
+        "name": "promoteOutputs",
+        "startTime": 1604621164137,
+        "endTime": 1604621164246,
+        "status": "SUCCEEDED",
+        "stageStart": false,
+        "stageEnd": false,
+        "loopStart": false,
+        "loopEnd": false
+      },
+      {
+        "id": "10",
+        "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.manifest.ManifestForceCacheRefreshTask",
+        "name": "forceCacheRefresh",
+        "startTime": 1604621164253,
+        "endTime": 1604621164362,
+        "status": "SUCCEEDED",
+        "stageStart": false,
+        "stageEnd": false,
+        "loopStart": false,
+        "loopEnd": false
+      },
+      {
+        "id": "11",
+        "implementingClass": "com.netflix.spinnaker.orca.pipeline.tasks.artifacts.BindProducedArtifactsTask",
+        "name": "bindProducedArtifacts",
+        "startTime": 1604621164368,
+        "status": "RUNNING",
+        "stageStart": false,
+        "stageEnd": true,
+        "loopStart": false,
+        "loopEnd": false
+      }
+    ],
+    "requisiteStageRefIds": []
+  },
+  "pipeline": {
+    "type": "PIPELINE",
+    "id": "01EPDDZH8XJCJR1AH9BXN14V3E",
+    "application": "policyapp",
+    "name": "runtime check",
+    "buildTime": 1604621157826,
+    "canceled": false,
+    "limitConcurrent": true,
+    "keepWaitingPipelines": false,
+    "stages": [
+      "01EPDDZHE2ESQRGFCJV5N6VFNE",
+      {
+        "id": "01EPDDZHE2J2ABVSMY8JEQ5482",
+        "refId": "2",
+        "type": "deleteManifest",
+        "name": "Delete (Manifest)",
+        "status": "NOT_STARTED",
+        "context": {
+          "app": "policyapp",
+          "mode": "static",
+          "cloudProvider": "kubernetes",
+          "manifestName": "service policyapp-service",
+          "options": {
+            "cascading": true
+          },
+          "location": "dev",
+          "account": "dev-us-west-2"
+        },
+        "outputs": {},
+        "tasks": [],
+        "requisiteStageRefIds": [
+          "3"
+        ]
+      },
+      {
+        "id": "01EPDDZHE28JHETRKC94YT2XZ1",
+        "refId": "3",
+        "type": "wait",
+        "name": "Wait",
+        "status": "NOT_STARTED",
+        "context": {
+          "waitTime": 300
+        },
+        "outputs": {},
+        "tasks": [],
+        "requisiteStageRefIds": [
+          "1"
+        ]
+      }
+    ],
+    "startTime": 1604621158025,
+    "status": "RUNNING",
+    "authentication": {
+      "user": "away168",
+      "allowedAccounts": [
+        "aws-dev-1",
+        "ecs-dev-1",
+        "opa",
+        "dev-us-west-2",
+        "docker-registry-away168",
+        "spinnaker",
+        "prod-us-west-2",
+        "armory-sales-dev"
+      ]
+    },
+    "origin": "api",
+    "trigger": {
+      "other": {
+        "type": "manual",
+        "user": "away168",
+        "parameters": {
+          "port": "22"
+        },
+        "artifacts": [],
+        "notifications": [],
+        "rebake": false,
+        "dryRun": false,
+        "strategy": false,
+        "resolvedExpectedArtifacts": [],
+        "expectedArtifacts": [],
+        "executionId": "01EPDDZH8XJCJR1AH9BXN14V3E",
+        "eventId": "08651b93-79a6-483b-ac02-7918c7c493bc",
+        "enabled": false,
+        "preferred": false
+      },
+      "resolvedExpectedArtifacts": [],
+      "type": "manual",
+      "user": "away168",
+      "parameters": {
+        "port": "22"
+      },
+      "artifacts": [],
       "notifications": [],
-      "refId": "2",
-      "requisiteStageRefIds": [],
-      "type": "manualJudgment"
-    }
-  ],
-  "triggers": [],
-  "updateTs": "1598393220000"
+      "rebake": false,
+      "strategy": false,
+      "dryRun": false
+    },
+    "pipelineConfigId": "1a95d6b1-cb98-4079-8a19-4c1b471acbce",
+    "notifications": [],
+    "initialConfig": {},
+    "systemNotifications": [],
+    "spelEvaluator": "v4"
+  }
 }
