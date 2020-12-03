@@ -144,3 +144,55 @@ spec:
                           #  value: "http://spin-clouddriver:7002"
                         restartPolicy: Never
                     backoffLimit: 1
+              - label: StackHawk HawkScan
+                type: hawkscan
+                description: Application security scan
+                cloudProvider: kubernetes
+                account: spinnaker
+                credentials: spinnaker
+                waitForCompletion: true
+                #consumeArtifactSource: propertyFile
+                #propertyFile: hawkscan
+                application: hawkscan
+                parameters:
+                  - name: repo
+                    label: Repo URL
+                    description: https://github.com/zconger/hawk-armory.git
+                    mapping: manifest.spec.template.spec.containers[0].env[0].value
+                    defaultValue: https://github.com/zconger/hawk-armory.git
+                  - name: environment
+                    label: Environment
+                    description: the environment for scanning
+                    mapping: manifest.spec.template.spec.containers[0].env[1].value
+                    defaultValue: Development
+                  - name: host
+                    label: APP HOST
+                    description: the URL of the app to scan
+                    mapping: manifest.spec.template.spec.containers[0].env[2].value
+                    defaultValue: http://rps.dev
+                manifest:
+                  apiVersion: batch/v1
+                  kind: Job
+                  metadata:
+                    name: hawkscan
+                    namespace: spinnaker
+                  spec:
+                    backoffLimit: 0
+                    template:
+                      spec:
+                        containers:
+                          - env:
+                              - name: REPO_URL
+                                value: 'https://github.com/zconger/hawk-armory.git'
+                              - name: APP_ENV
+                                value: Development
+                              - name: APP_HOST
+                                value: http://rps.dev
+                              - name: API_KEY
+                                value: encrypted:k8s!n:stackhawk!k:apikey
+                              - name: REPO_DIR
+                                value: /home/zap/workdir
+                            image: 'zconger/hawkscan:latest'
+                            name: hawkscan
+                        restartPolicy: Never
+                    ttlSecondsAfterFinished: 600
