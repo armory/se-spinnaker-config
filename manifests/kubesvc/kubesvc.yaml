@@ -2,6 +2,7 @@ kubernetes:
   accounts:
   - name: armory-sales-dev
     serviceAccount: true
+    onlyNamespacedResources: false
     #permissions: 
     #  WRITE: 
     #  - APPDEV_TEAMA

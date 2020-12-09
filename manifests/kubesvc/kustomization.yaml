@@ -13,6 +13,6 @@ kind: Kustomization
 images:
 - name: armory/kubesvc
   #newTag: 0.2.0-rc.54
-  newTag: 0.3.1
+  newTag: 0.4.1
 #  newName: armory-docker-virtual.jfrog.io/armory/kubesvc
 #  newTag: 0.3.0-snapshot.feat.tls.options.6e5d1f2
