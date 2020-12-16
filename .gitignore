@@ -1,3 +1,4 @@
 *.key
 infrastructure/certs/*.tar.gz
 *.csr
+.DS_Store
