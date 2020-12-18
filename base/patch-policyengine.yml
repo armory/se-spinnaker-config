@@ -10,8 +10,8 @@ spec:
           extensibility:
             plugins:
               Armory.PolicyEngine:
-                enabled: true
-                version: 0.0.14-rc3
+                enabled: false
+                version: 0.0.16
             repositories:
               armory:
                 url: https://raw.githubusercontent.com/armory-plugins/policy-engine-releases/master/repositories.json
@@ -24,7 +24,7 @@ spec:
             plugins:
               Armory.PolicyEngine:
                 enabled: true
-                version: 0.0.14-rc3
+                version: 0.0.16
                 extensions:
                   armory.policyEngine:
                     enabled: true
@@ -45,7 +45,7 @@ spec:
             plugins:
               Armory.PolicyEngine:
                 enabled: true
-                version: 0.0.14-rc3
+                version: 0.0.16
                 extensions:
                   armory.policyEngine:
                     enabled: true

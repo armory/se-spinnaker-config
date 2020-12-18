@@ -1,0 +1,23 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  validation:
+    providers:
+      kubernetes:
+        enabled: false
+      docker:
+        enabled: true
+      aws:
+        enabled: true
+      s3:
+        enabled: true
+      ci: 
+        enabled: true
+      metricStores:
+        enabled: true
+      persistentStorage:
+        enabled: true
+      notifications:
+        enabled: true

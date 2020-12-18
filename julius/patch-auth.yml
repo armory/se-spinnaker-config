@@ -16,7 +16,7 @@ spec:
               clientSecret: encrypted:s3!b:armory-sales-secrets!f:spinnaker-secrets.yml!r:us-west-2!k:githuboauth2.clientSecret
               accessTokenUri: https://github.com/login/oauth/access_token
               userAuthorizationUri: https://github.com/login/oauth/authorize
-              scope: user:email
+              scope: read:org,user:email
               preEstablishedRedirectUri: https://spinnaker-gate.se.armory.io/login
               useCurrentUri: false
             resource:
@@ -27,10 +27,10 @@ spec:
               lastName: name
               username: login
             provider: GITHUB
-    profiles:
-      gate:
-        security:
-          oauth2:
-            providerRequirements:
-              type: github
-              organization: armory
+    # profiles:
+    #   gate:
+    #     security:
+    #       oauth2:
+    #         providerRequirements:
+    #           type: github
+    #           organization: armory
