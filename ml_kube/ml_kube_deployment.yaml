@@ -1,3 +1,8 @@
+#To Test the Machine Learning Model Use the Curl Command with your external endpoint FQDN inputting an image URL from the internet.  The /predict request will input the image to the ML model which has been trained and return result
+#It uses the CIFAR-10 dataset of 60,000 images in 10 classes with the Gluon library in Apache MXNet and NVIDIA GPUs to accelerate the workload
+#
+#curl -X POST -d '{"url": "https://i.imgur.com/jD2hDMc.jpg"}' -H 'Content-Type: application/json' http://<your-cluster's-ip>/predict
+#
 apiVersion: v1
 kind: Namespace
 metadata:
