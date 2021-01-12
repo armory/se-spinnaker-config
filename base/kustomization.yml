@@ -30,7 +30,7 @@ patchesStrategicMerge:
 - patch-auth.yml
 - patch-echo.yml # Logging to kafka
 - patch-repository.yml
-#- patch-cf.yml
+- patch-cf.yml
 - patch-http.yml
 - patch-redis.yml
 - patch-mysql.yml
