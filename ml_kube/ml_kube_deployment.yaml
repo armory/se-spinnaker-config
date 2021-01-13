@@ -6,7 +6,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: moirai
+  name: ml_kube
   labels:
     name: staging
 ---
