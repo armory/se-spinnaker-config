@@ -6,14 +6,14 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: ml_kube
+  name: ml-kube
   labels:
     name: staging
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: ml_kube
+  namespace: ml-kube
   labels:
     app: image-classifier
   name: image-classifier
@@ -34,7 +34,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: ml_kube
+  namespace: ml-kube
   labels:
     app: image-classifier
   name: image-classifier
