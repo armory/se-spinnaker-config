@@ -28,7 +28,7 @@ spec:
         app: image-classifier
     spec: 
       containers:
-      - image: ctripod/image-classifier
+      - image: 'ctripod/image-classifier:latest'
         name: image-classifier
 ---
 apiVersion: v1
