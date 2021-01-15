@@ -1,0 +1,42 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      gate:
+        spinnaker:
+          extensibility:
+              deck-proxy:
+                enabled: true
+                plugins:
+                  Aws.LambdaDeploymentPlugin:
+                    enabled: true
+                    version: 1.0.1
+              repositories:
+                awsLambdaDeploymentPluginRepo:
+                  url: https://raw.githubusercontent.com/spinnaker-plugins/aws-lambda-deployment-plugin-spinnaker/master/plugins.json  
+      orca:
+        spinnaker:
+          extensibility:
+            plugins:
+              Aws.LambdaDeploymentPlugin:
+                enabled: true
+                version: 1.0.1
+            repositories:
+              awsLambdaDeploymentPluginRepo:
+                id: awsLambdaDeploymentPluginRepo
+                url: https://raw.githubusercontent.com/spinnaker-plugins/aws-lambda-deployment-plugin-spinnaker/master/plugins.json
+      clouddriver:                              # Enables Lambda Functions in "Infrastructure"
+        aws:
+          features: 
+            lambda:
+              enabled: true
+          accounts:
+          - name: aws-dev-1
+            lambdaEnabled: true
+            accountId: '795692138404'
+            regions: 
+            - name: us-west-2
+            assumeRole: role/Spinnaker-Managed-Role
