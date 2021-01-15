@@ -20,5 +20,6 @@ patchesStrategicMerge:
 - patch-mysql.yml # mysql clouddriver
 - patch-redis.yml
 - patch-validation.yml
+- patch-aws-lambda.yml  # add lambda plugin and enable lambda
 - patch-kubesvc-plugin.yml  # both patch files required for kubesvc
 - patch-clouddriver-plugin.yml  # both patch files required for kubesvc
