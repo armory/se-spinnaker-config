@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: bitbucket
+  name: bitbucket
+  namespace: bitbucket
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bitbucket
+  template:
+    metadata:
+      labels:
+        app: bitbucket
+    spec:
+      containers:
+      - image: 'atlassian/bitbucket-server:latest'
+        name: bitbucket
+        volumeMounts:
+        - mountPath: /var/atlassian/application-data/bitbucket
+          name: bitbucket-data
+        ports:
+          - containerPort: 7990
+            name: bbweb
+          - containerPort: 7999
+            name: bbdata
+        resources:
+          limits:
+            cpu: 4000m
+            memory: 3G
+      volumes:
+      - name: bitbucket-data
+        hostPath:
+          path: /tmp/data/bitbucket
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+  name: bitbucket-service
+  namespace: bitbucket
+spec:
+  ports:
+    - port: 7990
+      protocol: TCP
+      targetPort: 7990
+      name: bbweb
+    - port: 7999
+      protocol: TCP
+      targetPort: 7999
+      name: bbdata
+  selector:
+    app: bitbucket
+  type: ClusterIP
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+  namespace: bitbucket
+  labels:
+    app: "spin"
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    # nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+spec:
+  rules:
+  - host: bitbucket.se.armory.io
+    http:
+      paths:
+      - backend:
+          serviceName: bitbucket-service
+          servicePort: 7990
+        path: /
+      # - backend:
+      #     serviceName: bitbucket-service
+      #     servicePort: 7999
+      #   path: /data
+  tls:
+  - hosts:
+    - bitbucket.se.armory.io
+    secretName: bitbucket-cert
