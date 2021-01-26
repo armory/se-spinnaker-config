@@ -28,7 +28,7 @@ spec:
         app: image-classifier
     spec: 
       containers:
-      - image: 'ctripod/image-classifier:latest'
+      - image: 'ctripod/keras-app:latest'
         name: image-classifier
 ---
 apiVersion: v1
