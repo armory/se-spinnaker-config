@@ -30,6 +30,8 @@ spec:
       containers:
       - image: 'ctripod/keras-app:latest'
         name: image-classifier
+        port:
+          -containerPort: 5000
 ---
 apiVersion: v1
 kind: Service
