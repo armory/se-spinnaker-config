@@ -32,8 +32,8 @@ spec:
             memory: 3G
       volumes:
       - name: bitbucket-data
-        hostPath:
-          path: /tmp/data/bitbucket
+        persistentVolumeClaim:
+          claimName: bitbucket-pvc
 ---
 apiVersion: v1
 kind: Service
@@ -84,3 +84,16 @@ spec:
   - hosts:
     - bitbucket.se.armory.io
     secretName: bitbucket-cert
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: bitbucket-pvc
+  labels:
+    app: bitbucket
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
