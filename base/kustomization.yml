@@ -21,5 +21,3 @@ patchesStrategicMerge:
 - patch-aws.yml
 - patch-s3artifact.yml
 - patch-helm.yml
-- patch-policyengine.yml
-

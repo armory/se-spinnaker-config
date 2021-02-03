@@ -21,3 +21,4 @@ patchesStrategicMerge:
 - patch-logging.yml
 - redis.yml
 - patch-validation.yml
+- patch-policyengine.yml

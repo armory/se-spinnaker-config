@@ -24,3 +24,4 @@ patchesStrategicMerge:
 - patch-kubesvc-plugin.yml  # both patch files required for kubesvc
 - patch-clouddriver-plugin.yml  # both patch files required for kubesvc
 - patch-bitbucket.yml
+- patch-policyengine.yml  # v0.0.19 entitlements
