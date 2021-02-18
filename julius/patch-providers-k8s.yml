@@ -14,8 +14,6 @@ spec:
           accounts:
           - name: spinnaker
             providerVersion: V2
-            namespaces:
-            - spinnaker
             liveManifestCalls: true
             onlySpinnakerManaged: true
             serviceAccount: true 
