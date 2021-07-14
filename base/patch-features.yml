@@ -11,4 +11,5 @@ spec:
           window.spinnakerSettings.feature.artifactsRewrite = true;
           window.spinnakerSettings.feature.terraform = true;
           window.spinnakerSettings.feature.functions = true;
+          window.spinnakerSettings.kubernetesAdHocInfraWritesEnabled = true;
 
