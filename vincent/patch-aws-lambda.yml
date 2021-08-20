@@ -13,7 +13,7 @@ spec:
                 plugins:
                   Aws.LambdaDeploymentPlugin:
                     enabled: true
-                    version: 1.0.1
+                    version: 1.0.8
               repositories:
                 awsLambdaDeploymentPluginRepo:
                   url: https://raw.githubusercontent.com/spinnaker-plugins/aws-lambda-deployment-plugin-spinnaker/master/plugins.json  
@@ -23,7 +23,7 @@ spec:
             plugins:
               Aws.LambdaDeploymentPlugin:
                 enabled: true
-                version: 1.0.1
+                version: 1.0.8
             repositories:
               awsLambdaDeploymentPluginRepo:
                 id: awsLambdaDeploymentPluginRepo
