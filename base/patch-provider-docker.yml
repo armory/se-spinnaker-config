@@ -24,7 +24,7 @@ spec:
             paginateSize: 100                 # (Default: 100). Paginate size for the docker repository _catalog endpoint.
             permissions: {}
             repositories:               # (Default: []). An optional list of repositories to cache images from. If not provided, Spinnaker will attempt to read accessible repositories from the registries _catalog endpoint
-            - se-demo/*
+            - se-demo/nginx
             requiredGroupMembership: []
             sortTagsByDate: false             # (Default: false). Sort tags by creation date.
             trackDigests: false               # (Default: false). Track digest changes. This is not recommended as it consumes a high QPM, and most registries are flaky.
