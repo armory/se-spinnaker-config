@@ -18,3 +18,12 @@ spec:
           - id: aws-s3-terraform
             type: secret
             mountPath: /home/spinnaker/.aws/
+    profiles:
+      terraformer:
+        # Terraformer named profiles, for supplying credentials to terraformer
+        profiles:
+          - name: aws-terraform
+            variables:
+              - kind: aws
+                options:
+                  assumeRole: arn:aws:iam:795692138404:role/Spinnaker-Managed-Role
