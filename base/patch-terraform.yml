@@ -26,4 +26,4 @@ spec:
             variables:
               - kind: aws
                 options:
-                  assumeRole: arn:aws:iam:795692138404:role/Spinnaker-Managed-Role
+                  assumeRole: arn:aws:iam::795692138404:role/Spinnaker-Managed-Role
