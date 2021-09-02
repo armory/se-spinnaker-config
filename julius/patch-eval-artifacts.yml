@@ -1,4 +1,8 @@
- spec:
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+  spec:
    spinnakerConfig:
      profiles:
        spinnaker:  
