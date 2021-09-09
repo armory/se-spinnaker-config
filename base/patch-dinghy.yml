@@ -9,8 +9,7 @@ spec:
         dinghy:
           enabled: true
           templateOrg: armory
-          #templateRepo: se-pipeline-modules
-          templateRepo: se-pipeline-files
+          templateRepo: se-pipeline-modules
           githubToken: encrypted:k8s!n:github-spinnaker-se!k:token
           githubEndpoint: https://api.github.com
           dinghyFilename: dinghyfile
