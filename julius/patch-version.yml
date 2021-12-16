@@ -6,4 +6,4 @@ spec:
   spinnakerConfig:
     config:
       #version: 2.22.2
-      version: 2.26.0
+      version: 2.26.4
