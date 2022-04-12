@@ -24,4 +24,4 @@ patchesStrategicMerge:
 - patch-kubesvc-plugin.yml  # both patch files required for kubesvc
 - patch-clouddriver-plugin.yml  # both patch files required for kubesvc
 - patch-bitbucket.yml
-# - patch-policyengine.yml  # disabled for now, need to troubleshoot
+- patch-policyengine.yml  # 0.2.1
