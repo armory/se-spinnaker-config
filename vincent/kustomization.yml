@@ -11,6 +11,7 @@ bases:
 - ../base
 
 patchesStrategicMerge:
+- patch-armory-cloud.yml
 - patch-persistentStore.yml # s3 bucket
 - patch-providers-k8s.yml # using serviceAccounts
 - patch-version.yml # spinnaker Version
