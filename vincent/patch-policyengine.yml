@@ -11,7 +11,7 @@ spec:
           policyEngine:
             opa:
               # Replace with the actual URL to your Open Policy Agent deployment
-              baseUrl: http://opa:8181/v1
+              baseUrl: http://opa.opa.svc.cluster.local:8181/v1
               # Optional. The number of seconds that the Policy Engine will wait for a response from the OPA server. Default is 10 seconds if omitted.
               # timeoutSeconds: <integer> 
         spinnaker:
